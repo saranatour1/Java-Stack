@@ -51,17 +51,12 @@ public class PuzzleJava {
 
   //generate an aray of passwords, where each element is supposed to have 8 charecters of passwords in it 
   public String[] getNewPasswordSet(int length) {
-    char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-    Random randMachine = new Random();
     String[] passwords = new String[length];
 
     for (int j = 0; j < length; j++) {
-      String password = "";
-      for (int i = 0; i < 8; i++) {
-        int result = randMachine.nextInt(26);
-        password += alphabet[result];
-      }
+      String password= generatePassword();
       passwords[j] = password;
+      
     }
 
     return passwords;
