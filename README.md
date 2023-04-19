@@ -14,13 +14,13 @@ This is the folder Structure for the Java Stack Submissions, This will be update
     │   │   └── 2- Alfred bot/
     │   │       ├── AlfredQuotes.java
     │   │       └── AlfredTest.java
-    │   └── Day 49 (we are here)/
+    │   └── Day 49 /
     │       ├── 0-Cafe Business Logic
     │       ├── 1-Puzzling (Practice)
     │       ├── 2-Map of the Hashmatique (Practice)
     │       └── 3- Lists of Exceptions (Optional)
     └── Java OOP basics/
-        └── Day 50/
+        └── Day 50 (we are here)/
             ├── 0- Orders & Items (Practice)
             ├── 1- Barista's Challenge (Practice)
             ├── 2- BankAccount
