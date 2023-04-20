@@ -4,22 +4,17 @@
 // double price
 
   public class Item {
-    // return String name, and double price 
-      private String name; 
-      private double price;
-      ///
+    // create a class, when instantiated name and price properties are created for that object 
+      public String name; 
+      public double price;
+      //---------//
+      // a constructor class to assign the objects with their properties 
       public Item(String name, double price) {
           this.name = name;
           this.price = price;
       }
-      
-      public String getName() {
-          return name;
-      }
-      
-      public double getPrice() {
-          return price;
-      }
+      //--------//
+
   }
 
 
