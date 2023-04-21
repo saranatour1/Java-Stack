@@ -6,8 +6,8 @@
 public class BankAccount{
   private double cheakingBalnace;
   private double savingsBalance;
-  public static int member; //class?
-  public static double member1; //claass?
+  private static int member; //class?
+  private static double member1; //claass?
   private double total;
   // Create a class member (static) that has the number of accounts created thus far.
   //Create a class member (static) that tracks the total amount of money stored in every account created.
