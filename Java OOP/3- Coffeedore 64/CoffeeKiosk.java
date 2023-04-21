@@ -64,9 +64,7 @@ class CoffeeKiosk{
           displayMenu();
           itemNumber = System.console().readLine(); // Get input for next itemNumber
     
-          if (itemNumber.equals("q")) { // Check if user wants to quit
-              break; // Exit loop
-          }
+
           // Get the item object from the menu, and add the item to the order
           // Ask them to enter a new item index or q again, and take their input
       }
