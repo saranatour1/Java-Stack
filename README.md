@@ -1,6 +1,10 @@
 ### Folder Structure
 This is the folder Structure for the Java Stack Submissions, This will be updated each week/day: 
-> what I used to create this is [tree](https://tree.nathanfriend.io/)  
+> what I used to create this is [tree](https://tree.nathanfriend.io/) 
+<br> try this command in the cmd in the same directory of the folder.   
+ ```bash 
+ tree /f 
+ ```
 
 ```bash
 .
