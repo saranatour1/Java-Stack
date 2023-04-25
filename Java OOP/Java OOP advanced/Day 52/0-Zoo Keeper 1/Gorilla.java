@@ -8,11 +8,11 @@ public class Gorilla extends Mammal {
   }
 
   public void eatBananas(){
-    this.energyLevel+=10;
+    this.energyLevel += 10;
     System.out.println("The Gorilla is eating a banana now! , he is very satisfied!, Energy Level: "+ this.energyLevel); 
   }
   public void climb(){
-    this.energyLevel-=10;
+    this.energyLevel -= 10;
     System.out.println("The Gorilla is Climbing a tree!, Energy level "+ this.energyLevel);
   }
 }

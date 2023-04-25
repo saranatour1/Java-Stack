@@ -12,7 +12,7 @@ public class Painting extends Art {
 	// Constructor
 
 	public Painting(String paintType, String title, String author, String description) {
-		// super(paintType, paintType, paintType, values<String>); // why ?
+		// super(paintType, paintType, paintType, values<String>);
 		super(title, author, description);
 		this.paintType = paintType;
 	}

@@ -12,6 +12,8 @@ public class TestGorilla {
 
     gorilla.climb(); //95
 
-    gorilla.displayEnergy(); //95
+
+    System.out.println("The Energy level for this Mammal Species is:"+ gorilla.displayEnergy());
+     //95
   }
 }

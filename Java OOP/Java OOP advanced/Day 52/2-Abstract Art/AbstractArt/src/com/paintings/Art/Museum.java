@@ -21,7 +21,8 @@ import java.util.ArrayList;
 			Sculpture  bronze =new Sculpture(" Bronze", "Weeeeeeee", "Someone2", "kk2");
 
 			marble.viewArt();
-			bronze.viewArt();
+			bronze.viewArt(); 
+//			System.out
 
 			System.out.println("xx Welcome to the museum! xx");
 
