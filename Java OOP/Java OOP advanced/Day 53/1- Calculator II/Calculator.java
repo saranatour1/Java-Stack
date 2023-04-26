@@ -16,21 +16,41 @@ class Calculator {
   }
 
 
+  /*
+   * we would have a vals variable operation ()
+   * this operation takes all the possible values and adds them to the array list 
+   * if the vals is '=' this ends the operation
+   * once that happens, it returns the result
+   * second try :D:D 
+   */
 
-  // public void performOperation(String vals) {
 
-  //   while(!vals.equals("=")){
-  //     System.out.println("Please enter your first number:");
-  //     String firstNumberStr = System.console().readLine();
-  //     everyThing.add(firstNumberStr);
-  //   // double firstNumber = Double.parseDouble(firstNumberStr);
+  public void performOperation(String vals) {
+    everyThing.add(vals);
+
+    if(vals.equals("=")){
+      getResults();
+    }
+
+    for(int i =0; i< everyThing.size(); i++){
+
+      if(everyThing.get(i).matches("^[+-]?\\d+(\\.\\d+)?$") ){ //regex for is a number
+        double firstNumber = Double.parseDouble(everyThing.get(i));
+      }else if(everyThing.get(i).equals("+")   ){
+
+      } 
       
-  //   // //get the code operation + or - 
-  //   // System.out.println("Please enter an operation of either + or -:");
-  //   // String operationCode = System.console().readLine();
+    }
 
 
-  //   }
+    // double firstNumber = Double.parseDouble(firstNumberStr);
+      
+    // //get the code operation + or - 
+    // System.out.println("Please enter an operation of either + or -:");
+    // String operationCode = System.console().readLine();
+
+
+    }
 
 
     // // Get first number from the command line
