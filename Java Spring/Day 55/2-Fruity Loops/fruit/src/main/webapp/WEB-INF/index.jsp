@@ -10,10 +10,13 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
+<h1 class="text-primary text-center my-5">Fruit store</h1>
 <table class="table w-50 mx-auto mt-5">
 <thead>
 	<tr>
-		<th scope="col"> Name </th>
+		<th scope="col" > Name </th>
 		<th scope="col"> Price </th>
 	</tr>
 </thead>
