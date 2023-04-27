@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+body{
+	width:80%;
+	height:100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:0 auto;
+	
+}
+
+div{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+
+h1:first-child{
+	margin-right:100px;
+}
+
+h2{
+	color:blue;
+}
