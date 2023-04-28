@@ -158,3 +158,97 @@ the controller java file should look something like this :
 ![123](https://user-images.githubusercontent.com/77834808/235231029-744ec1ae-f965-4a08-bae4-e92fc2a6b8ad.png)  
 as simple as this :    
 ![123](https://user-images.githubusercontent.com/77834808/235231142-5857b521-fd33-488d-b12a-7ca8caadd43a.png)  
+
+Note : the ISO-8859-1 is the standard html 4 pages encoding system, changing it to UTF-8 encoding would be a good idea :
+
+```xml
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+```
+
+adding static files: 
+
+1. Create the `src/main/webapp` folder if it does not exist
+2. Create the `src/main/webapp/WEB-INF` folder
+3. Edit the `src/main/resources/applications.properties` file to contain the following code:
+
+```bash
+spring.mvc.view.prefix=/WEB-INF/
+```
+
+**************dependency:************** 
+
+```xml
+<dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>jakarta.servlet.jsp.jstl</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish.web</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+    </dependency>
+```
+
+to use jstl: 
+
+```xml
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- New line below to use the JSP Standard Tag Library -->
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+```
+
+to include bootstrap : 
+
+in the .jsp file: 
+
+```xml
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+```
+
+****************************Dependancy :**************************** 
+
+```xml
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator</artifactId>
+        <version>0.46</version>
+    </dependency>
+
+    <!-- BOOTSTRAP DEPENDENCIES -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>5.2.3</version>
+    </dependency>
+```
+
+do not change anything 
+
+for static files , link these in the head as well: 
+
+```xml
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script type="text/javascript" src="/js/app.js"></script>
+```
+
+this is all for now! 
+
+---
+
+### Using Vscode for the spring dashboard:
+You need to install the Spring pack extentions from VScode market [Spring for VSCode](https://code.visualstudio.com/docs/java/java-spring-boot)  
+
+From their words in the link: 
+
+'To install, launch VS Code and from the Extensions view (Ctrl+Shift+X), search for vscode-spring-initializr.'
+
+
+'Once you have the extension installed, open the Command Palette (Ctrl+Shift+P) and type Spring Initializr to start generating a Maven or Gradle project and then follow the wizard.'  
+
+Follow the normal steps that we took before and you should be good to go, you can start the app from the dashboard.
+
