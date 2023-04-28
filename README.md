@@ -252,3 +252,4 @@ From their words in the link:
 
 Follow the normal steps that we took before and you should be good to go, you can start the app from the dashboard.
 
+I also downloaded the spring CLI which feels like fun.
