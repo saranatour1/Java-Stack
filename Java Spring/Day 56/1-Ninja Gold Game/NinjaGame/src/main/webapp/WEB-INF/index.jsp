@@ -71,10 +71,30 @@
             </div>
           </form>
         </div>
-      </div>
-      <!-- end of forms -->
+        <!-- New form -->
 
-      <!-- Activities -->
+        <div class="col-8 mt-3 mx-auto">
+          <form action="/handleform" method="post" class="card h-100">
+            <!-- Quest form -->
+            <input type="hidden" name="formtype" value="spa">
+            <div class="card-body text-center">
+              <h5 class="card-title">Spa </h5>
+              <p class="card-text">Takes (5 - 20) golds</p>
+              <button type="submit" class="btn btn-primary">Find Gold</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-5 mt-3 mx-auto">
+          <form action="/reset" method="post" class="card h-100">
+            <!-- Quest form -->
+              <button type="submit" class="btn btn-primary">Reset</button>
+          
+          </form>
+        </div>
+        </div>
+
+              <!-- Activities -->
       <h3 class="mt-4 mb-4">Activites: </h3>
       <div class="card rounded w-100 h-100 border" style="height: 20rem !important; overflow-y: auto !important; "> 
         <!-- For each here -->
@@ -87,7 +107,11 @@
         
 
       </div>
-    </div>
+      </div>
+      <!-- end of forms -->
+
+
+
 
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
   </body>

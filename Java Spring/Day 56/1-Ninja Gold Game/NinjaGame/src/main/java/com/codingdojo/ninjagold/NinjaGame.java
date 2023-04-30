@@ -12,6 +12,7 @@
 //  importing the main package
 package com.codingdojo.ninjagold;
 
+import java.lang.ProcessBuilder.Redirect;
 // importing all the librarires used in java.util
 import java.util.ArrayList;
 // this was used here to reverse the array but it gave a wierd behavior of fluctuating the array, so 
@@ -102,18 +103,27 @@ public class NinjaGame {
         activity = (" <p class='ms-3  text-danger'> You entered a " + formType +"  you lost "+ dif + " gold " + now + "<p>"  );
         System.out.println("I am here");
       } else{
-        activity = (" <p class='ms-3  text-success'> You entered a " + formType +"  you lost "+ dif + " gold " + now + "<p>"  );
+        activity = (" <p class='ms-3  text-success'> You entered a " + formType +"  you won "+ dif + " gold " + now + "<p>"  );
       } //(" <p class='ms-3 mt-3 text-success'> You entered a " + formType +"  you lost "+ dif + " gold " + now + "<p>"  )
 
       activities.add(0,activity);
 
       // System.out.println("quest gold = " + gold + activity);
+    }else if(formType.equals("spa")){
+
+      int dif = rand.nextInt(20 - 5) - 5;
+      gold -= dif;
+      activity = (" <p class='ms-3  text-danger'> You entered a " + formType +"  you lost "+ dif + " gold " + now + "<p>"  );
+      activities.add(0,activity);
     }
     
 // this is setting a wierd bahvior on the activity  , it is reversing it each time, so it is just fluctuating, I need a stack
 
     // Collections.reverse(activities);
-    
+    // * NINJA BONUS: Create a fifth place "spa" where the ninja loses 5 - 20 gold (10-45 minutes)
+
+
+
     
     session.setAttribute("gold", gold);
     session.setAttribute("activities", activities);
@@ -124,11 +134,23 @@ public class NinjaGame {
     return "redirect:/";
   }
 
+  // Reset method 
+
+  @RequestMapping("/reset")
+  public String reset(HttpSession session) {
+      gold = 0;
+      activities.clear();
+      session.setAttribute("gold", gold);
+      return "redirect:/";
+  }
+  
+
+
   // Do the ninja tasks 
   /*
-   * NINJA BONUS: Create a fifth place "spa" where the ninja loses 5 - 20 gold (10-45 minutes)
+  
 
-    NINJA BONUS: Create a reset button (5-30 minutes)
+    NINJA BONUS: Create a reset button (5-30 minutes) // done 
 
     NINJA BONUS: Send the ninja to a debtors' prison on a second rendered page if the ninja falls too far into debt (15-60 minutes)
    */
