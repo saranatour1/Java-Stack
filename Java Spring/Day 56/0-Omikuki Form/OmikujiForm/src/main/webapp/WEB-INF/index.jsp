@@ -10,16 +10,12 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri
     <title>Omkiji Form</title>
   </head>
   <body> 
-    <div class="container mx-auto w-50 ">
-        <h1 class="mt-3 ">Send an Omikuji!</h1>
+    <h1 class="mt-3 text-center">Send an Omikuji!</h1>
+    <div class="container mx-auto w-50 border shadow mt-5 rounded-5 mb-5 ">
         <form method="POST" action="/omikuji/handleform">
-            <!-- <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div> -->
 
-              <div class="mb-3"> 
+
+              <div class="mb-3 mt-3"> 
                 <label for="num"> Pick any number from 5 to 25 </label>
                 <select class="form-select" aria-label="Default select example" name="num">
                   <option selected>Pick a numeber? </option>
@@ -50,26 +46,20 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri
                 <label for="hobby" class="form-label">Enter professional endeavor or hobby:</label>
                 <input  type="text" name="hobby" class="form-control" id="hobby">
               </div>
-      
 
-            <div>
-              <label for="hobby"></label>
-              <input type="text" name="hobby" />
-            </div>
-      
-            <div>
-              <label for="living_thing"> Enter any type of living thing.</label>
-              <input type="text" name="living_thing" />
-            </div>
-      
-            <div>
-              <label for="say_something">Say something nice to someone:</label>
-              <textarea name="say_something" cols="15" rows="10"></textarea>
-            </div>
-      
-            <div>
-              <label for="send">Send and show a friend</label>
-              <input type="submit" value="send" />
+              <div class="mb-3">
+                <label for="living_thing" class="form-label"> Enter any type of living thing.</label>
+                <input  type="text" name="living_thing" class="form-control" id="living_thing">
+              </div>
+              
+              <div class="mb-3">
+                <label for="say_something" class="form-label"> Say something nice to someone:</label>
+                <textarea type="text" name="say_something" class="form-control" id="say_something" cols="5" rows="10"></textarea>
+              </div>
+            <div class="mb-3 mx-auto text-center">
+              <p >Send and show a friend</p>
+              <button type="submit" class="btn btn-primary">Send</button>
+   
             </div>
           </form>
     </div>
