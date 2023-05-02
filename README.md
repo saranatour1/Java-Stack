@@ -42,13 +42,13 @@ This is the folder Structure for the Java Stack Submissions, This will be update
 │    │   ├── 1-Hello Human
 │    │   └── 2-Daikichi Path Variables
 │    └── Day 55
-│        ├── 0-Hopper's Receipt
-│        ├── 1-Display Date
-│        ├── 2-Fruity Loops
-│        ├── 3-Counter
-│        └── Day 55-
-│            ├── 0-Omikuki Form
-│            └── 1-Ninja Gold Game
+│    │    ├── 0-Hopper's Receipt
+│    │    ├── 1-Display Date
+│    │    ├── 2-Fruity Loops
+│    │    ├── 3-Counter
+│    │    └── Day 55-
+│    │        ├── 0-Omikuki Form
+│    │        └── 1-Ninja Gold Game
 │    ├── Day 56
 │    │   └── 0-Omikuki Form
 │    ├── spring MVC
