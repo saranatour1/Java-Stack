@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Books</title>
+<title>Show Book</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 
 </head>

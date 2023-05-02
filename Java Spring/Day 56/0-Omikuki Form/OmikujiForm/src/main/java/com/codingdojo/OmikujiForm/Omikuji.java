@@ -26,7 +26,7 @@ public class Omikuji {
     @RequestParam(value = "hobby") String hobby,
     @RequestParam(value = "living_thing") String livingThing,
     @RequestParam(value = "say_something") String saySomething ,
-    HttpSession session
+    HttpSession session 
   ) {
 		session.setAttribute("num", num);
 		session.setAttribute("city", city);
@@ -34,6 +34,8 @@ public class Omikuji {
 		session.setAttribute("hobby", hobby);
 		session.setAttribute("living_thing", livingThing);
 		session.setAttribute("say_something", saySomething );
+
+    // model.addAttribute("sara", num);
 		// System.out.println(saySomething);
 		// System.out.println(num);
 		// System.out.println(personName);

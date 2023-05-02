@@ -11,6 +11,10 @@
 
   <div class="container">
     <h1 class="mt-4 text-center">Here's Your Omikuji!</h1>
+ 
+    <h1>${sara}</h1>
+
+
 
     <div class="card w-50 mx-auto">
       <div class="card-body" style="background-color: rgba(164, 255, 255, 0.531);">
