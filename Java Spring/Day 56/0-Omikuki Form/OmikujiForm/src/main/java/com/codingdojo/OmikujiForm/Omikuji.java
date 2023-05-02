@@ -34,9 +34,9 @@ public class Omikuji {
 		session.setAttribute("hobby", hobby);
 		session.setAttribute("living_thing", livingThing);
 		session.setAttribute("say_something", saySomething );
-		System.out.println(saySomething);
-		System.out.println(num);
-		System.out.println(personName);
+		// System.out.println(saySomething);
+		// System.out.println(num);
+		// System.out.println(personName);
     return "redirect:/omikuji/show";
   }
 
