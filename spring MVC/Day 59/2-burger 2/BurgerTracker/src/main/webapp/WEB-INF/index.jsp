@@ -24,6 +24,8 @@
 				<th scope="col">Resturant Name </th>
 				<th scope="col">Notes</th>
 				<th scope="col">Rating</th>
+				<th scope="col">Edit/Delete</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +36,7 @@
 					<td> ${burg.restName}  </td>
 					<td>${burg.notes}</td>
 					<td> ${burg.rating}</td>
+					<td><a href="/burgers/${burg.id}/edit">edit</a></td>
 				</tr>
 			</c:forEach>
 

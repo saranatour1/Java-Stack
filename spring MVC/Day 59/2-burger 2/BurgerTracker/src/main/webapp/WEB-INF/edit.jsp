@@ -12,38 +12,18 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-<title>Main Form</title>
+<title>Edit form</title>
 </head>
 <body>
-	
-	<table class="table container mx-auto mt-5 w-50">
-		<thead>
-			<tr>
-				<th scope="col">id</th>
-				<th scope="col">Burger Name</th>
-				<th scope="col">Resturant Name </th>
-				<th scope="col">Notes</th>
-				<th scope="col">Rating</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var = "burg" items="${burg}">
-				<tr>
-					<th scope="row">${burg.id}</th>
-					<td> ${burg.burgerName}</td>
-					<td> ${burg.restName}  </td>
-					<td>${burg.notes}</td>
-					<td> ${burg.rating}</td>
-				</tr>
-			</c:forEach>
 
-		</tbody>
-	</table>
 
 <!-- Form to add new burgers to the menu -->
 
-<h1 class="text-center mt-4 ">New Burger</h1>
-<form:form action="/" method="post" modelAttribute="burger"  class="container mx-auto w-50">
+
+
+<h1 class="text-center mt-4 ">Edit burger # ${burger.id}</h1>
+<form:form action="/burger/${burger.id}" method="post" modelAttribute="burger"  class="container mx-auto w-50">
+  <input type="hidden" name="_method" value="put">
 		<p>
 				<form:label path="burgerName" class="form-label">Burger name</form:label>
 				<form:errors path="burgerName" class="text-danger"/>
