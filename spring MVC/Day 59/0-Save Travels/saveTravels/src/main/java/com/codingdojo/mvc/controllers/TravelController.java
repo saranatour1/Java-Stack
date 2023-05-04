@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.codingdojo.mvc.models.Travel;
 import com.codingdojo.mvc.services.TravelService;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+// import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class TravelController {
+  
   @Autowired
 	TravelService travelService;
   
@@ -33,8 +34,10 @@ public class TravelController {
   }
 
   @PostMapping("/")
-  public String create(@Valid @ModelAttribute("travel") Travel travel, BindingResult result) {
+  public String create(@Valid @ModelAttribute("travel") Travel travel, BindingResult result ,Model model) {
       if (result.hasErrors()) {
+        List<Travel> travels = travelService.allTravels();
+        model.addAttribute("trips", travels);
           return "index.jsp";
       } else {
           travelService.createTravel(travel);
@@ -45,13 +48,12 @@ public class TravelController {
   @RequestMapping("/travel/{id}/edit")
   public String edit(@PathVariable("id") Long id, Model model) {
       Travel travel =travelService.findTravel(id);
-      // Burger burger = burgerService.findBurger(id);
       model.addAttribute("travel", travel);
       return "edit.jsp";
   }
 
     //handling the edit requet
-    @RequestMapping(value="/Travel/{id}", method=RequestMethod.PUT)
+    @RequestMapping(value="/Travel/{id}", method = RequestMethod.PUT)
     public String update(@Valid @ModelAttribute("travel") Travel travel, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("travel", travel);
@@ -66,7 +68,6 @@ public class TravelController {
     @DeleteMapping("/travel/{id}")
     public String destroy(@PathVariable("id") Long id) {
       travelService.deleteTravel(id);
-      // bookService.deleteBook(id);
         return "redirect:/";
     }
 
