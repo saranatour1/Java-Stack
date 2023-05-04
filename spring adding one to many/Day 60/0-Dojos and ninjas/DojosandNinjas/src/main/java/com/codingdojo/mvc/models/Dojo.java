@@ -1,5 +1,5 @@
-package com.codingdojo.mvc.models;
-
+package main.java.com.codingdojo.mvc.models;
+// package com.codingdojo.mvc.models;
 import java.util.Date;
 import java.util.List;
 
@@ -62,6 +62,7 @@ public class Dojo {
       protected void onUpdate(){
           this.updatedAt = new Date();
       }
+      
       public Long getId() {
         return id;
       }
