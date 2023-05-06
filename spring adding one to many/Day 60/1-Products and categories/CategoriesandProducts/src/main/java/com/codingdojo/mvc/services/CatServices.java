@@ -1,7 +1,7 @@
 package com.codingdojo.mvc.services;
 
 import java.util.List;
-import java.util.Optional;
+// import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -42,40 +42,46 @@ public class CatServices {
 
     //find a product by id 
     public Product findProduct(Long id){
-      Optional<Product> optionalproduct = productrepository.findById(id);
-      if(optionalproduct.isPresent()){
-        return optionalproduct.get();
-
-      } else{
-        return null;
-      }
+      // Optional<Product> optionalproduct = productrepository.findById(id);
+      return productrepository.findById(id).get();
+      // if(optionalproduct.isPresent()){
+      //   return optionalproduct.get();
+      // } else{
+      //   return null;
+      // }
     }
 
     public Category findCategory(Long id){
-      Optional<Category> opOptionalCategory = catrepository.findById(id);
-      if(opOptionalCategory.isPresent()){
-        return opOptionalCategory.get();
-
-      }else{
-        return null;
-      }
+      // Optional<Category> cat = catrepository.findById(id);
+      return catrepository.findById(id).get();
+      // if(opOptionalCategory.isPresent()){
+      //   return opOptionalCategory.get();
+      // }else{
+      //   return null;
+      // }
     }
 
     //add product to category
 
+    // public void add(Long catId , Long productId){
+    //   Category thisCategory =findCategory(catId);
+    //   Product thisProduct = findProduct(productId);   
+    //   thisCategory.getProducts().add(thisProduct);
+    //   catrepository.save(thisCategory);	
+    // }
+
+
     public void addProductToCategory(Long catId, Long productId){
       Category thisCategory =findCategory(catId);
-      Product thisProduct = findProduct(productId);
-
-      
+      Product thisProduct = findProduct(productId);      
       thisCategory.getProducts().add(thisProduct);
       catrepository.save(thisCategory);	
     }
 
 
     public void addCategoryToProduct(Long productId, Long categoryId) {
-      Product product = productrepository.findById(productId).orElseThrow();
-      Category category = catrepository.findById(categoryId).orElseThrow();
+      Product product =findProduct(productId);
+      Category category = findCategory(categoryId);
       product.getCategories().add(category);
       productrepository.save(product);
 

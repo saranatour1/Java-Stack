@@ -13,9 +13,11 @@ public interface categoryRepository  extends CrudRepository<Category, Long>{
     
   List<Category> findAll();
     // Retrieves a list of all categories for a particular product
-    List<Category> findAllByProducts(Product product);
+  List<Category> findAllByProducts(Product product);
     
     // Retrieves a list of any categories a particular product
     // does not belong to.
-    List<Category> findByProductsNotContains(Optional<Product> product);
+  List<Category> findByProductsNotContains(Optional<Product> product);
 }
+// List<Category> findAllByProducts(Product product);
+// List<Category> findByProductsNotContains(Product product);
