@@ -74,10 +74,11 @@ public class HomeController {
   private String showCat(@PathVariable("id") Long id, Model model) {
     Category cat = catServices.findCategory(id);
     model.addAttribute("cat", cat);
-    List < Product > prod = catServices.allProduct();
-    model.addAttribute("prod", prod);
+    List < Product > prodInCat = catServices.allProductsInCat(cat);
+    model.addAttribute("prod", prodInCat);
     //here we need to return the 
-
+    List <Product> notInCat = catServices.allProductsNotInCategory(cat);
+    model.addAttribute("notInCat", notInCat);
     // productRepository.class.getName()
     return "showcat.jsp";
   }
@@ -92,7 +93,14 @@ public class HomeController {
   @RequestMapping("/products/{id}")
   private String showProd(@PathVariable("id") Long id, Model model) {
     Product prod = catServices.findProduct(id);
-    List < Category > categories = catServices.allCategories();
+    List < Category > categories = catServices.allCatsInProduct(prod);
+
+
+
+    List<Category> notInProduct =catServices.allCategoriesNotInProduct(prod);
+    //this worked
+    model.addAttribute("notInproduct", notInProduct);
+    // System.out.println(notInProduct);
     model.addAttribute("allcats", categories);
     model.addAttribute("product", prod);
     return "showprod.jsp";

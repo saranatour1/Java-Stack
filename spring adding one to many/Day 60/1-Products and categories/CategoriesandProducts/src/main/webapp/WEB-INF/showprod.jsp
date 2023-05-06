@@ -40,7 +40,7 @@
       <div class="mb-3">
         <label for="cat" class="form-label">Select a cat</label>
         <select name="cat" id="cat" class="form-control">
-          <c:forEach items="${allcats}" var="cat">
+          <c:forEach items="${notInproduct}" var="cat">
             <option value="${cat.id}">
               - ${cat.catName}
             </option>

@@ -17,6 +17,7 @@ public interface productRepository extends CrudRepository<Product, Long> {
     
   // Retrieves a list of any categories a particular product
   // does not belong to.
+  //categories
   List<Product> findByCategoriesNotContains(Category category);
 
 }

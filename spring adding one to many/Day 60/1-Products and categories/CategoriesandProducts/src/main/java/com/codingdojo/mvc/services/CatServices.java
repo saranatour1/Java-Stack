@@ -42,34 +42,12 @@ public class CatServices {
 
     //find a product by id 
     public Product findProduct(Long id){
-      // Optional<Product> optionalproduct = productrepository.findById(id);
       return productrepository.findById(id).get();
-      // if(optionalproduct.isPresent()){
-      //   return optionalproduct.get();
-      // } else{
-      //   return null;
-      // }
     }
 
     public Category findCategory(Long id){
-      // Optional<Category> cat = catrepository.findById(id);
       return catrepository.findById(id).get();
-      // if(opOptionalCategory.isPresent()){
-      //   return opOptionalCategory.get();
-      // }else{
-      //   return null;
-      // }
     }
-
-    //add product to category
-
-    // public void add(Long catId , Long productId){
-    //   Category thisCategory =findCategory(catId);
-    //   Product thisProduct = findProduct(productId);   
-    //   thisCategory.getProducts().add(thisProduct);
-    //   catrepository.save(thisCategory);	
-    // }
-
 
     public void addProductToCategory(Long catId, Long productId){
       Category thisCategory =findCategory(catId);
@@ -78,21 +56,30 @@ public class CatServices {
       catrepository.save(thisCategory);	
     }
 
-
     public void addCategoryToProduct(Long productId, Long categoryId) {
       Product product =findProduct(productId);
       Category category = findCategory(categoryId);
       product.getCategories().add(category);
       productrepository.save(product);
+  }
 
+  // list the all the categories that do not have the product in them
+// so here I assume that the ID will be passed here, while the Product is passed to the category repository
+  public List <Category> allCategoriesNotInProduct(Product product){
+    return catrepository.findByProductsNotContains(product);
+  } 
+
+  public List <Product> allProductsNotInCategory(Category category){
+    return productrepository.findByCategoriesNotContains(category);
+  }
+
+  public List <Product> allProductsInCat(Category category){
+    return productrepository.findAllByCategories(category);
   }
   
-
-
-        // add the product to this category's list of products
-       
-        
-        // Save thisCategory, since you made changes to its product list.
+  public List <Category> allCatsInProduct(Product product){
+    return catrepository.findAllByProducts(product);
+  }
 
 
 

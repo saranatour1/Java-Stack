@@ -42,7 +42,7 @@
       <div class="mb-3">
         <label for="product" class="form-label">Select a product</label>
         <select name="product" id="product" class="form-control">
-          <c:forEach items="${prod}" var="pr">
+          <c:forEach items="${notInCat}" var="pr">
             <option value="${pr.id}">
               - ${pr.prodName}
             </option>
