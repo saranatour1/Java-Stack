@@ -22,6 +22,7 @@ pageEncoding="UTF-8" %>
       <h1 class="my-4">
         ${book.title}
       </h1>
+      <p><a href="/books">Back to shelves</a></p>
 
       <p> 
         <span class="text-danger"> ${book.user.userName}</span>
