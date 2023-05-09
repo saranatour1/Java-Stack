@@ -1,13 +1,13 @@
 package com.codingdojo.fs.controllers;
 
-import java.text.DateFormat;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties.Reactive.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,15 +16,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.codingdojo.fs.models.Book;
 import com.codingdojo.fs.models.LoginUser;
+import com.codingdojo.fs.models.Project;
 import com.codingdojo.fs.models.User;
-import com.codingdojo.fs.repositories.BookRepository;
+import com.codingdojo.fs.services.ProjectService;
 import com.codingdojo.fs.services.UserService;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -35,6 +34,9 @@ public class HomeController {
   // Add once service is implemented:
   @Autowired
   private UserService userServ;
+
+  @Autowired
+  private ProjectService projectServ;
 
   // the main page, rendering the form with the basic things.
   // i did something wrong here most likely
@@ -67,7 +69,7 @@ public class HomeController {
     // operations
     session.setAttribute("newUser", registeredUser.getId());
 
-    return "redirect:/books";
+    return "redirect:/dashboard";
   }
 
   @PostMapping("/login")
@@ -85,146 +87,148 @@ public class HomeController {
     // Store the logged-in user's ID in session or perform any necessary login
     // operations
     session.setAttribute("newUser", user.getId());
-    return "redirect:/books";
+    return "redirect:/dashboard";
   }
 
-  @GetMapping("/books")
+  //main page 
+  @GetMapping("/dashboard")
   public String homePage(Model model, HttpSession session) {
     Long newUserId = (Long) session.getAttribute("newUser");
     User thisUser = userServ.findUserById(newUserId);
     model.addAttribute("thisUser", thisUser);
 
-    // adding all books that the user didn't borrow
-    List<Book> books = userServ.findallBooks();
+    // all the projects regardless 
+    List<Project> projects = projectServ.findAllProjects();
+    List<Project> allProjectUserIsNotJoinedat = new ArrayList<>();
+    List<Project> allProjectsUSerISpartOf = new ArrayList<>();
 
-    model.addAttribute("allbooks", books);
+    for (Project project : projects) {
+      if(project.getJoinee() != thisUser){
+        allProjectUserIsNotJoinedat.add(0, project);
+      }else{
+        allProjectsUSerISpartOf.add(0, project);
+      }
+
+
+
+  
+
+      // if (book.getUser_that_borrowed() == thisUser) {
+      //   borrowedBooks.add(0, book);
+      // } else if (book.getUser_that_borrowed() == null || book.getUser() == thisUser) {
+      //   notborrowedBooks.add(0, book);
+      // }
+    }
+
+
+    model.addAttribute("allprojects", allProjectsUSerISpartOf);
+    model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
+
+
     return "hello.jsp";
   }
 
-  @RequestMapping("/booksmarket")
-  public String market(Model model, HttpSession session) {
-    Long newUserId = (Long) session.getAttribute("newUser");
-    User thisUser = userServ.findUserById(newUserId);
-    model.addAttribute("thisUser", thisUser);
-
-    // adding all books that the user didn't borrow
-    List<Book> books = userServ.findallBooks();
-    List<Book> borrowedBooks = new ArrayList<>();
-    List<Book> notborrowedBooks = new ArrayList<>();
-    for (Book book : books) {
-      if (book.getUser_that_borrowed() == thisUser) {
-        borrowedBooks.add(0, book);
-      } else if (book.getUser_that_borrowed() == null || book.getUser() == thisUser) {
-        notborrowedBooks.add(0, book);
-      }
-    }
-    // for(int i= 0; i<books )
-
-    model.addAttribute("allbooks", notborrowedBooks);
-    model.addAttribute("borrowedBooks", borrowedBooks);
-    return "market.jsp";
-  }
-
-  @RequestMapping("/books/{id}/return")
-  public String returnBook(@PathVariable("id") Long id) {
-    Book book = userServ.findBook(id);
-
-    book.setUser_that_borrowed(null);
-    userServ.updateBook(book);
-    return "redirect:/books";
-  }
-
-  // adding a new book
-  // rendering the page
-  @RequestMapping("/books/new")
-  public String showAddingBookPage(@ModelAttribute("book") Book book, Model model) {
-    // to capture the form input
-    model.addAttribute("book", new Book());
-
-    return "addbook.jsp";
-  }
-
-  // post mapping method
-  @PostMapping("/books/new")
-  public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult result, HttpSession session) {
-    if (result.hasErrors()) {
-      return "addbook.jsp";
-    } else {
-      Long userId = (Long) session.getAttribute("newUser");
-      User user = userServ.findUserById(userId);
-      book.setUser(user);
-      final DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-      
-      userServ.addBook(book);
-      return "redirect:/books";
-    }
-  }
-  // edit delete maybe thursday?
-
-  @GetMapping("/books/{id}")
-  public String showBook(@PathVariable("id") Long id, Model model) {
-
-    Book book = userServ.findBook(id);
-    model.addAttribute("book", book);
-    return "book.jsp";
-  }
-
-  // edit path
-
-  @RequestMapping("/books/{id}/edit")
-  public String edit(@PathVariable("id") Long id, Model model) {
-    // Burger burger = burgerService.findBurger(id);
-    Book book = userServ.findBook(id);
-    model.addAttribute("book", book);
-    return "edit.jsp";
-  }
-
-  // handling the edit requet
-  @RequestMapping(value = "/books/{id}", method = RequestMethod.PUT)
-  public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, Model model,
-      HttpSession session) {
-    if (result.hasErrors()) {
-      model.addAttribute("book", book);
-      return "edit.jsp";
-    } else {
-      // I can put this in a function later on
-      Long userId = (Long) session.getAttribute("newUser");
-      User user = userServ.findUserById(userId);
-      book.setUser(user);
-      userServ.updateBook(book);
-      return "redirect:/books";
-    }
-  }
-
-  // to delete a book
-  @RequestMapping(value = "/books/{id}/delete", method = RequestMethod.DELETE)
-  public String delete(@PathVariable("id") Long id, Model model, HttpSession session) {
-
-    userServ.deleteBook(id);
-    return "redirect:/books";
-  }
-
-  // /books/${book.id}/borrow
-  // borrow
-  @RequestMapping(value = "/books/{id}/borrow")
-  public String borrow(@PathVariable("id") Long id, HttpSession session) {
-    Book book = userServ.findBook(id);
-    Long userId = (Long) session.getAttribute("newUser");
-    User user = userServ.findUserById(userId);
-    book.setUser_that_borrowed(user);
-
-    userServ.updateBook(book);
-    System.out.println("Successs!");
-    return "redirect:/booksmarket";
-  }
-
-  // change /books to book market
-  // get a new edit path
 
   @GetMapping("/logout")
   public String logout(HttpSession session) {
     session.removeAttribute("newUser");
     return "redirect:/";
+  }
+
+  // adding a new project
+
+  @RequestMapping("/projects/new")
+  public String showAddingProjectsPage(@ModelAttribute("project") Project project, Model model) {
+    // to capture the form input
+  // [2023-09-05]
+    // System.out.println(project.getDueDate());
+    model.addAttribute("project", new Project());
+    return "addproject.jsp";
+  }
+
+  @PostMapping("/projects/new")
+  public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result, HttpSession session) {
+    if (result.hasErrors()) {
+      return "addproject.jsp";
+    } else {
+      Long userId = (Long) session.getAttribute("newUser");
+      User user = userServ.findUserById(userId);
+        
+      project.setLeader(user);
+      project.setJoinee(user);
+      projectServ.addProject(project);
+      return "redirect:/dashboard";
+    }
+  }
+
+
+  // editing a project 
+
+  @RequestMapping("/projects/{id}/edit")
+  public String edit(@PathVariable("id") Long id, Model model) {
+    
+    // Burger burger = burgerService.findBurger(id);
+    Project project = projectServ.findProjectById(id);
+    model.addAttribute("project", project);
+    return "edit.jsp";
+  }
+
+  // // handling the edit requet
+  @RequestMapping(value = "/projects/{id}/edit", method = RequestMethod.PUT)
+  public String update(@Valid @ModelAttribute("project") Project project, BindingResult result, Model model,
+      HttpSession session) {
+    if (result.hasErrors()) {
+      model.addAttribute("project", project);
+      return "edit.jsp";
+    } else {
+      // I can put this in a function later on
+      Long userId = (Long) session.getAttribute("newUser");
+      User user = userServ.findUserById(userId);
+      project.setLeader(user);
+      projectServ.updateProject(project);
+      return "redirect:/dashboard";
+    }
+  }
+
+  // /projects/${project.id}/delete
+  @RequestMapping(value = "/projects/{id}/delete", method = RequestMethod.DELETE)
+  public String delete(@PathVariable("id") Long id, Model model, HttpSession session) {
+    projectServ.deleteProject(id);
+    return "redirect:/dashboard";
+  }
+
+
+  // //projects/${project.id}/leave
+  @RequestMapping("/projects/{id}/leave")
+  public String leave(@PathVariable("id") Long id) {
+    Project project = projectServ.findProjectById(id);
+    project.setJoinee(null);
+    projectServ.updateProject(project);
+    return "redirect:/dashboard";
+  }
+
+  ///projects/${project.id}/join
+  @RequestMapping(value = "/projects/{id}/join")
+  public String borrow(@PathVariable("id") Long id, HttpSession session) {
+    Project project = projectServ.findProjectById(id);
+    Long userId = (Long) session.getAttribute("newUser");
+    User user = userServ.findUserById(userId);
+    project.setJoinee(user);
+
+    projectServ.updateProject(project);
+    System.out.println("Successs!");
+    return "redirect:/dashboard";
+  }
+
+
+  // /projects/${project.id}
+
+  @GetMapping("/projects/{id}")
+  public String showProject(@PathVariable("id") Long id, Model model) {
+    Project project = projectServ.findProjectById(id);
+
+    model.addAttribute("project", project);
+    return "project.jsp";
   }
 
 }
