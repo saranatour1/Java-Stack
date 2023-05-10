@@ -1,129 +1,80 @@
 package com.codingdojo.sql.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
-import jakarta.persistence.FetchType;
+
 
 
 @Entity
 @Table(name = "languages")
 public class Language {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Size(max = 2)
-  private String countryCode;
+	private String country_code;
+	private String language;
+	private String is_official;
+	private double percentage;
+	private int country_id;
 
-  @Size(max = 30)
-  private String language;
-
-  @Enumerated(EnumType.STRING)
-  // @Column(name="resourceType")
-  private IsOfficial isOfficial;
-
-  // enum()
-  public enum IsOfficial {
-    T ,
-    F
+  public Language() {
   }
 
-  private double percentage;
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
+  }
+  public String getCountry_code() {
+    return country_code;
+  }
+  public void setCountry_code(String country_code) {
+    this.country_code = country_code;
+  }
+  public String getLanguage() {
+    return language;
+  }
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+  public String getIs_official() {
+    return is_official;
+  }
+  public void setIs_official(String is_official) {
+    this.is_official = is_official;
+  }
+  public double getPercentage() {
+    return percentage;
+  }
+  public void setPercentage(double percentage) {
+    this.percentage = percentage;
+  }
+  public int getCountry_id() {
+    return country_id;
+  }
+  public void setCountry_id(int country_id) {
+    this.country_id = country_id;
+  }
 
 
   // country_id
 
 
-  // Many to one with the countries
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name="country_id")
-  private Country country;
+  // // Many to one with the countries
+  // @ManyToOne(fetch = FetchType.LAZY)
+  // @JoinColumn(name="country_id")
+  // private Country country;
 
 
-  public Language(Country country) {
-    this.country = country;
-  }
 
-
-  public Language(@Size(max = 2) String countryCode, @Size(max = 30) String language, IsOfficial isOfficial,
-      double percentage) {
-    this.countryCode = countryCode;
-    this.language = language;
-    this.isOfficial = isOfficial;
-    this.percentage = percentage;
-  }
-
-
-  public Language() {
-  }
-
-
-  public Long getId() {
-    return id;
-  }
-
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-
-  public String getCountryCode() {
-    return countryCode;
-  }
-
-
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
-  }
-
-
-  public String getLanguage() {
-    return language;
-  }
-
-
-  public void setLanguage(String language) {
-    this.language = language;
-  }
-
-
-  public IsOfficial getIsOfficial() {
-    return isOfficial;
-  }
-
-
-  public void setIsOfficial(IsOfficial isOfficial) {
-    this.isOfficial = isOfficial;
-  }
-
-
-  public double getPercentage() {
-    return percentage;
-  }
-
-
-  public void setPercentage(double percentage) {
-    this.percentage = percentage;
-  }
-
-
-  public Country getCountry() {
-    return country;
-  }
-
-
-  public void setCountry(Country country) {
-    this.country = country;
-  }
 
 /*
   Columns:

@@ -4,12 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Size;
-import jakarta.persistence.FetchType;
+
 
 @Entity
 @Table(name = "cities")
@@ -20,36 +17,39 @@ public class City {
   private Long id;
 
   
-  @Size( max = 35)
+
   private String name;
 
-  @Size(max= 3)
-  private String  countryCode;
 
-  @Size(max = 20)
+  private String  country_code;
+
+
   private String district;
 
 
   private int population;
 
+	private int country_id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name="country_id")
-  private Country country;
+  // @ManyToOne(fetch = FetchType.LAZY)
+  // @JoinColumn(name="country_id")
+  // private Country country;
 
+  
 
-  public City(Country country) {
-    this.country = country;
+  public int getCountry_id() {
+    return country_id;
   }
 
 
-  public City(@Size(max = 35) String name, @Size(max = 3) String countryCode, @Size(max = 20) String district,
-      int population) {
-    this.name = name;
-    this.countryCode = countryCode;
-    this.district = district;
-    this.population = population;
+  public void setCountry_id(int country_id) {
+    this.country_id = country_id;
   }
+
+
+
+
+
 
 
   public Long getId() {
@@ -72,14 +72,10 @@ public class City {
   }
 
 
-  public String getCountryCode() {
-    return countryCode;
-  }
 
 
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
-  }
+
+
 
 
   public String getDistrict() {
@@ -102,14 +98,16 @@ public class City {
   }
 
 
-  public Country getCountry() {
-    return country;
+  public String getCountry_code() {
+    return country_code;
   }
 
 
-  public void setCountry(Country country) {
-    this.country = country;
+  public void setCountry_code(String country_code) {
+    this.country_code = country_code;
   }
+
+
 
 
 

@@ -1,314 +1,175 @@
 package com.codingdojo.sql.models;
 
-import java.util.List;
+
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-// import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
-import jakarta.persistence.FetchType;
 
-// import javax.persistence.FetchType;
 
+// id int AI PK 
+// code char(3) 
+// name char(52) 
+// continent enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America') 
+// region char(26) 
+// surface_area float(10,2) 
+// indep_year smallint 
+// population int 
+// life_expectancy float(3,1) 
+// gnp float(10,2) 
+// gnp_old float(10,2) 
+// local_name char(45) 
+// government_form char(45) 
+// head_of_state char(60) 
+// capital int 
+// code2 char(2)
 
 @Entity
-@Table(name = "countries")
+@Table(name="countries")
 public class Country {
-
-
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
-  @Size(max = 3)
-  private String code;
-
-  @Size(max = 52)
-  private String name;
-
-  @Enumerated(EnumType.STRING)
-  // @Column(name="resourceType")
-  private Continent continent;
-
-  // enum()
-  public enum Continent {
-    ASIA,
-    EUROPE,
-    NORTH_AMERICA,
-    AFRICA,
-    OCEANIA,
-    ANTARCTICA,
-    SOUTH_AMERICA
-  }
-
-  @Size(max = 26)
-  private String region;
-
-  // Definition: surface_area float(10,2)
-  private double surface_area;
-
-  private short indep_year;
-
-  private int population;
-
-  private double lifeExpectancy;
-
-  private double gnp;
-
-  private double gnpOld;
-
-  @Size(max = 45)
-  private String localName;
-
-  @Size(max = 45)
-  private String governmentForm;
-
-  @Size(max = 60)
-  private String headOfState;
-
-  private int capital;
-
-  @Size(max = 2)
-  private String code2;
-
-
-  //one to many relationship between languages and Countries, on is on the countries side 
-  @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
-  private List<Language> languages;
-
-
-  // one to many wtith the cities 
-
-  @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
-  private List<City> cities;
-
-
-  public Country() {
-  }
-
-  public Country(@Size(max = 3) String code, @Size(max = 52) String name, Continent continent,
-  @Size(max = 26) String region, double surface_area, short indep_year, int population, double lifeExpectancy,
-  double gnp, double gnpOld, @Size(max = 45) String localName, @Size(max = 45) String governmentForm,
-  @Size(max = 60) String headOfState, int capital, @Size(max = 2) String code2) {
-this.code = code;
-this.name = name;
-this.continent = continent;
-this.region = region;
-this.surface_area = surface_area;
-this.indep_year = indep_year;
-this.population = population;
-this.lifeExpectancy = lifeExpectancy;
-this.gnp = gnp;
-this.gnpOld = gnpOld;
-this.localName = localName;
-this.governmentForm = governmentForm;
-this.headOfState = headOfState;
-this.capital = capital;
-this.code2 = code2;
-}
-
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
+    //always use object types 
+	private String code;
+	private String name;
+	private String continent;
+	private String region;
+	private Double surface_area;
+	private Integer indep_year;
+	private Integer population;
+	private Double life_expectancy;
+	private Double gnp;
+	private String local_name;
+	private String government_form;
+	private String head_of_state;
+	private Integer capital;
+	private String code2;
+	
+	public Country() {}
 
   public Long getId() {
     return id;
   }
 
-
   public void setId(Long id) {
     this.id = id;
   }
-
 
   public String getCode() {
     return code;
   }
 
-
   public void setCode(String code) {
     this.code = code;
   }
-
 
   public String getName() {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
-
-  public Continent getContinent() {
+  public String getContinent() {
     return continent;
   }
 
-
-  public void setContinent(Continent continent) {
+  public void setContinent(String continent) {
     this.continent = continent;
   }
-
 
   public String getRegion() {
     return region;
   }
 
-
   public void setRegion(String region) {
     this.region = region;
   }
 
-
-  public double getSurface_area() {
+  public Double getSurface_area() {
     return surface_area;
   }
 
-
-  public void setSurface_area(double surface_area) {
+  public void setSurface_area(Double surface_area) {
     this.surface_area = surface_area;
   }
 
-
-  public short getIndep_year() {
+  public Integer getIndep_year() {
     return indep_year;
   }
 
-
-  public void setIndep_year(short indep_year) {
+  public void setIndep_year(Integer indep_year) {
     this.indep_year = indep_year;
   }
 
-
-  public int getPopulation() {
+  public Integer getPopulation() {
     return population;
   }
 
-
-  public void setPopulation(int population) {
+  public void setPopulation(Integer population) {
     this.population = population;
   }
 
-
-  public double getLifeExpectancy() {
-    return lifeExpectancy;
+  public Double getLife_expectancy() {
+    return life_expectancy;
   }
 
-
-  public void setLifeExpectancy(double lifeExpectancy) {
-    this.lifeExpectancy = lifeExpectancy;
+  public void setLife_expectancy(Double life_expectancy) {
+    this.life_expectancy = life_expectancy;
   }
 
-
-  public double getGnp() {
+  public Double getGnp() {
     return gnp;
   }
 
-
-  public void setGnp(double gnp) {
+  public void setGnp(Double gnp) {
     this.gnp = gnp;
   }
 
-
-  public double getGnpOld() {
-    return gnpOld;
+  public String getLocal_name() {
+    return local_name;
   }
 
-
-  public void setGnpOld(double gnpOld) {
-    this.gnpOld = gnpOld;
+  public void setLocal_name(String local_name) {
+    this.local_name = local_name;
   }
 
-
-  public String getLocalName() {
-    return localName;
+  public String getGovernment_form() {
+    return government_form;
   }
 
-
-  public void setLocalName(String localName) {
-    this.localName = localName;
+  public void setGovernment_form(String government_form) {
+    this.government_form = government_form;
   }
 
-
-  public String getGovernmentForm() {
-    return governmentForm;
+  public String getHead_of_state() {
+    return head_of_state;
   }
 
-
-  public void setGovernmentForm(String governmentForm) {
-    this.governmentForm = governmentForm;
+  public void setHead_of_state(String head_of_state) {
+    this.head_of_state = head_of_state;
   }
 
-
-  public String getHeadOfState() {
-    return headOfState;
-  }
-
-
-  public void setHeadOfState(String headOfState) {
-    this.headOfState = headOfState;
-  }
-
-
-  public int getCapital() {
+  public Integer getCapital() {
     return capital;
   }
 
-
-  public void setCapital(int capital) {
+  public void setCapital(Integer capital) {
     this.capital = capital;
   }
-
 
   public String getCode2() {
     return code2;
   }
 
-
   public void setCode2(String code2) {
     this.code2 = code2;
   }
-
-
-  public List<Language> getLanguages() {
-    return languages;
-  }
-
-
-  public void setLanguages(List<Language> languages) {
-    this.languages = languages;
-  }
-
-
-  public List<City> getCities() {
-    return cities;
-  }
-
-
-  public void setCities(List<City> cities) {
-    this.cities = cities;
-  }
-  
-
-
-
-/*
-  Columns:
-  +---------------+------------------+
-  |     Column    |      Data Type   |    
-  |       id      |       int        |     
-  |      name     |    char(35)      |  
-  |  country_code |    char(3)       |  
-  |   district    | char(20)         |  
-  |  population   |   float(4,1)     | 
-  |  country_id   |       int        | --> from joined tables  
-  +---------------+------------------+
-*/
 
 
 }
