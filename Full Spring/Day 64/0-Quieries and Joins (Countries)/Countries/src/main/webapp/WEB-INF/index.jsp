@@ -16,71 +16,298 @@
             <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
           </head>
 
+          <style>
+            html {
+              scroll-behavior: smooth;
+            }
+          </style>
+
           <body>
-            <div class="container container-sm container-md container-lg container-xl mt-5 text-start">
-              <h1 class="my-4 text-primary text-center">Project Maneger</h1>
-              <p class="my-1 text-center">A place for teams to manage projects. </p>
+            <div class="container container-sm container-md mt-5 mx-auto">
+              <nav class="d-flex justify-content-center my-3">
+                <a href="#Query1" class="btn btn-link">Query1</a>
+                <a href="#Query2" class="btn btn-link">Query2</a>
+                <a href="#Query3" class="btn btn-link">Query3</a>
+                <a href="#Query4" class="btn btn-link">Query4</a>
+                <a href="#Query5" class="btn btn-link">Query5</a>
+                <a href="#Query6" class="btn btn-link">Query6</a>
+                <a href="#Query7" class="btn btn-link">Query7</a>
+                <a href="#Query8" class="btn btn-link">Query8</a>
+              </nav>
 
-              <div class="row mt-3">
-                <div class="col-6">
-                  <h4 class="text-start my-2">Register</h4>
 
-                  <form:form action="/register" method="post" modelAttribute="newUser" class="container w-100">
+              <div id="Query1">
+                <h3>
+                  Query 1
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
 
-                    <p>
-                      <form:label path="firstName" class="form-label">First Name:
-                      </form:label>
-                      <form:errors path="firstName" class="text-danger" />
-                      <form:input type="text" path="firstName" class="form-control" />
-                    </p>
-                    <p>
-                      <form:label path="lastName" class="form-label">Last Name:
-                      </form:label>
-                      <form:errors path="lastName" class="text-danger" />
-                      <form:input type="text" path="lastName" class="form-control" />
-                    </p>
-                    <p>
-                      <form:label path="email" class="form-label">Email :</form:label>
-                      <form:errors path="email" class="text-danger" />
-                      <form:input type="email" path="email" class="form-control" />
-                    </p>
 
-                    <p>
-                      <form:label path="password" class="form-label">Password :</form:label>
-                      <form:errors path="password" class="text-danger" />
-                      <form:input type="password" path="password" class="form-control" />
-                    </p>
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task1}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
 
-                    <p>
-                      <form:label path="confirm" class="form-label">Confirm Password:
-                      </form:label>
-                      <form:errors path="confirm" class="text-danger" />
-                      <form:input type="password" path="confirm" class="form-control" />
-                    </p>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
 
-                    <input type="submit" value="Submit" class="btn btn-primary" />
-                  </form:form>
-                </div>
-                <div class="col-6">
-                  <h4 class="text-start my-2">Login</h4>
+              </div>
 
-                  <form:form action="/login" method="post" modelAttribute="newLogin" class="container w-100">
-                    <p>
-                      <form:label path="email" class="form-label">Email :</form:label>
-                      <form:errors path="email" class="text-danger" />
-                      <form:input type="email" path="email" class="form-control" />
-                    </p>
+              <div id="Query2">
+                <h3>
+                  Query 2
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
 
-                    <p>
-                      <form:label path="password" class="form-label">Password :</form:label>
-                      <form:errors path="password" class="text-danger" />
-                      <form:input type="password" path="password" class="form-control" />
-                    </p>
-                    <input type="submit" value="Submit" class="btn btn-primary" />
-                  </form:form>
-                </div>
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">Number of cities</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task2}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query3">
+                <h3>
+                  Query 3
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">City</th>
+                      <th scope="col">Population</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task3}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query4">
+                <h3>
+                  Query 4
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">Language</th>
+                      <th scope="col">Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task4}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[2]}" />
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query5">
+                <h3>
+                  Query 5
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">Surface Area </th>
+                      <th scope="col">Population</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task5}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[2]}" />
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query6">
+                <h3>
+                  Query 6
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">Goverment Form </th>
+                      <th scope="col">Capital</th>
+                      <th scope="col">Life Expectency</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task6}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[2]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[3]}" />
+                        </td>
+
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query7">
+                <h3>
+                  Query 7
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">City</th>
+                      <th scope="col">Country </th>
+                      <th scope="col">District </th>
+                      <th scope="col">Population</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task7}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[2]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[3]}" />
+                        </td>
+
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div id="Query8">
+                <h3>
+                  Query 8
+                </h3>
+                <a href="#" class="btn btn-link"> Back to top </a>
+
+
+                <table class="table w-50 mx-auto table-striped-columns">
+                  <thead>
+                    <tr>
+                      <th scope="col">Region</th>
+                      <th scope="col">Number of Countries </th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="column" items="${task8}">
+                      <tr>
+                        <td class="text-center">
+                          <c:out value="${column[0]}" />
+                        </td>
+                        <td class="text-center">
+                          <c:out value="${column[1]}" />
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
               </div>
             </div>
+
+
+
 
             <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
           </body>

@@ -30,10 +30,10 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
    */
 
   // note that it is bound to spaces inside the query
-  @Query(value = "SELECT name ,language, percentage FROM countries " +
+  @Query(value = "SELECT name , percentage FROM countries " +
       "INNER JOIN languages  ON " +
       "countries.code = languages.country_code "
-      + "WHERE Language='Slovene' "
+      + "WHERE language='Slovene' "
       + "ORDER BY percentage DESC ", nativeQuery = true)
   List<Object[]> findAllCountries();
 
@@ -73,7 +73,7 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
    */
 
   // Make sure you do not fall into syntax errors
-  @Query(value = "SELECT countries.name , cities.name , cities.population from countries " +
+  @Query(value = "SELECT  cities.name , cities.population from countries " +
       "left join cities on countries.Code = cities.country_code " +
       " where countries.name ='Mexico' and cities.population > 500000" +
       " order by cities.population desc ", nativeQuery = true)

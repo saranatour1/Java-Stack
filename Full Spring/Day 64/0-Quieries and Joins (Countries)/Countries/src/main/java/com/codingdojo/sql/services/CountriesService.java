@@ -47,12 +47,11 @@ public class CountriesService {
     return countryRepo.findNumberOfCities();
   }
 
-  // find all languages 
+  // find all languages
   public List<Object[]> findPopulationInMexico() {
     return countryRepo.findPopulationOfCitiesInMixico();
   }
 
-  
   public List<Object[]> findLanguages() {
     return countryRepo.allLanguagesByCountry();
   }
@@ -73,5 +72,4 @@ public class CountriesService {
     return countryRepo.allCountriesByRegion();
   }
 
-  
 }
