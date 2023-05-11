@@ -11,9 +11,9 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 	private int pin;
 	private Integer confirmedAuthID;
 
-
-	//The AdminUser class implements the HIPAACompliantUser interface in the following ways:
-	//boolean assignPIN(int) ::Pin must be 6 digits or more; returns false if not
+	// The AdminUser class implements the HIPAACompliantUser interface in the
+	// following ways:
+	// boolean assignPIN(int) ::Pin must be 6 digits or more; returns false if not
 	// Expected to assign the pin to the user (as a member variable)
 
 	public AdminUser(Integer employeeID, String role) {
@@ -21,10 +21,12 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 		this.role = role;
 		this.securityIncidents = new ArrayList<String>();
 	}
-// check if the pin is less than 6 digits return false  , else assign it to the object, and return true.
+
+	// check if the pin is less than 6 digits return false , else assign it to the
+	// object, and return true.
 	@Override
 	public boolean assignPin(int pin) {
-		if (pin < 100000) { // 12345 
+		if (pin < 100000) { // 12345
 			return false;
 		}
 		this.pin = pin;
@@ -39,30 +41,29 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 		}
 		return true;
 	}
-	// return the Security Incedent 
+
+	// return the Security Incedent
 	public ArrayList<String> reportSecurityIncidents() {
 		return securityIncidents;
 	}
 
-	// new incidents  
+	// new incidents
 	public void newIncident(String notes) {
 		String report = String.format(
-			"Datetime Submitted: %s \nReported By ID: %s\nNotes: %s \n", 
-			new Date(), this.employeeID, notes
-		);
+				"Datetime Submitted: %s \nReported By ID: %s\nNotes: %s \n",
+				new Date(), this.employeeID, notes);
 		securityIncidents.add(report);
 	}
 
-	//  athorization check, with date
+	// athorization check, with date
 	public void authIncident() {
 		String report = String.format(
-			"Datetime Submitted: %s \nID: %s\nNotes: %s \n", 
-			new Date(), this.employeeID, "AUTHORIZATION ATTEMPT FAILED FOR THIS USER"
-		);
+				"Datetime Submitted: %s \nID: %s\nNotes: %s \n",
+				new Date(), this.employeeID, "AUTHORIZATION ATTEMPT FAILED FOR THIS USER");
 		securityIncidents.add(report);
 	}
-	
-	// getters  for employerID 
+
+	// getters for employerID
 	public Integer getEmployeeID() {
 		return employeeID;
 	}
@@ -77,7 +78,7 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 		return role;
 	}
 
-	// setter for setRole 
+	// setter for setRole
 	public void setRole(String role) {
 		this.role = role;
 	}
@@ -87,7 +88,7 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 		return securityIncidents;
 	}
 
-	//setter for Security incidents
+	// setter for Security incidents
 	public void setSecurityIncidents(ArrayList<String> securityIncidents) {
 		this.securityIncidents = securityIncidents;
 	}
@@ -96,18 +97,18 @@ public class AdminUser implements HIPAACompliantUser, HIPAACompliantAdmin {
 	public int getPin() {
 		return pin;
 	}
-	
+
 	// setter for pin
 	public void setPin(int pin) {
 		this.pin = pin;
 	}
 
-	//getter confirmationID
+	// getter confirmationID
 	public Integer getConfirmedAuthID() {
 		return confirmedAuthID;
 	}
 
-	//Setter ConfirmationID 
+	// Setter ConfirmationID
 	public void setConfirmedAuthID(Integer confirmedAuthID) {
 		this.confirmedAuthID = confirmedAuthID;
 	}

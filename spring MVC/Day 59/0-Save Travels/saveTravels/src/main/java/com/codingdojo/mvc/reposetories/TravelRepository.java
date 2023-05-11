@@ -9,12 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.codingdojo.mvc.models.Travel;
 
 @Repository
-public interface TravelRepository extends CrudRepository<Travel,Long> {
-  
+public interface TravelRepository extends CrudRepository<Travel, Long> {
+
   List<Travel> findAll();
 
   Optional<Travel> findById(Long id);
-  
+
 }
-
-

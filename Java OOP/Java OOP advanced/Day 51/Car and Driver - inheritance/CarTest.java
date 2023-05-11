@@ -19,5 +19,5 @@ public class CarTest {
     driver.gameOver();
 
     driver.displayGasLevel();
-}
+  }
 }

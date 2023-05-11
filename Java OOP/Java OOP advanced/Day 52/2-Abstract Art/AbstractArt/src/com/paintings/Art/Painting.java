@@ -1,9 +1,7 @@
 package com.paintings.Art;
 
-
 //he painting class should inherit from Art, 
 //and it should also contain a new member variable called paintType (ex. Oil, Watercolor, Acrylic, etc.).
-
 
 //inside of Painting.java
 public class Painting extends Art {
@@ -16,12 +14,12 @@ public class Painting extends Art {
 		super(title, author, description);
 		this.paintType = paintType;
 	}
-	
-	//Getter for paintType 
+
+	// Getter for paintType
 	public String getPaintType() {
 		return paintType;
 	}
-	
+
 	// Setter for paintType
 	public void setPaintType(String paintType) {
 		this.paintType = paintType;
@@ -29,11 +27,9 @@ public class Painting extends Art {
 
 	@Override
 	public void viewArt() {
-			System.out.println("This is a painting, it has the following paint Type " + this.paintType 
-					+ ", the title is " + super.title + ", the author is " + super.author 
-					+ ", and the description is " + super.descreption);
+		System.out.println("This is a painting, it has the following paint Type " + this.paintType
+				+ ", the title is " + super.title + ", the author is " + super.author
+				+ ", and the description is " + super.descreption);
 	}
-	
-	
-	
+
 }

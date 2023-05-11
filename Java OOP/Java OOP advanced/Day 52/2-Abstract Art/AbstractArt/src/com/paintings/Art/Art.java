@@ -20,29 +20,24 @@ String description
 // inside of Art.java
 //Member Variables 
 public abstract class Art {
-    // TODO: implement Art class
-	protected String title; 
+	// TODO: implement Art class
+	protected String title;
 	protected String author;
-	protected String descreption; 
-	// private ArrayList <String> values; 
-	
-	// Constructor 	
+	protected String descreption;
+	// private ArrayList <String> values;
+
+	// Constructor
 	public Art(String title, String author, String descreption) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.descreption = descreption;
-//		this.values = values;
+		// this.values = values;
 		// this.values = new ArrayList <String> ();
-		
+
 	}
-	
-//	Create an abstract method called viewArt()
-public abstract void viewArt();
 
+	// Create an abstract method called viewArt()
+	public abstract void viewArt();
 
-
-
-
-	
 }

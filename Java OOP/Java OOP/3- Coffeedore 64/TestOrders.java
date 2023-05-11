@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+
 public class TestOrders {
 	public static void main(String[] args) {
-		//Creating two objects by calling the Order() constructor without args
+		// Creating two objects by calling the Order() constructor without args
 		CoffeeKiosk appTest = new CoffeeKiosk();
 
 		appTest.addMenuItem(17, "Capotchino");
@@ -13,5 +14,5 @@ public class TestOrders {
 		appTest.addMenuItem(7, "Onion Rings");
 		appTest.newOrder();
 
-		}
 	}
+}

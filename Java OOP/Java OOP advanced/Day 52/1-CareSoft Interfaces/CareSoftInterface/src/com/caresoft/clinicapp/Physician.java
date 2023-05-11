@@ -2,18 +2,19 @@ package com.caresoft.clinicapp;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 // the class is a public class implementing HIPPA User 
 public class Physician implements HIPAACompliantUser {
-  //	member variables,  Patient notes, id, pin 
-  private ArrayList < String > patientNotes;
+  // member variables, Patient notes, id, pin
+  private ArrayList<String> patientNotes;
   private int id;
   private int pin;
   private Integer confirmedAuthid;
 
-  //    Constructor, with id   and empty ArrayList 
+  // Constructor, with id and empty ArrayList
   public Physician(int id) {
     this.id = id;
-    this.patientNotes = new ArrayList < String > ();
+    this.patientNotes = new ArrayList<String>();
   }
 
   public void newPatientNotes(String notes, String patientName, Date date) {
@@ -24,11 +25,10 @@ public class Physician implements HIPAACompliantUser {
     this.patientNotes.add(report);
   }
 
-
-  //   Pin must be exactly 4 digits, returns false if not.
+  // Pin must be exactly 4 digits, returns false if not.
   // Expected to assign the pin to the user (as a member variable)
 
-@Override //auto?
+  @Override // auto?
   public boolean assignPin(int pin) {
     if (pin < 1000 || pin > 9999) {
       return false;
@@ -36,17 +36,18 @@ public class Physician implements HIPAACompliantUser {
     this.pin = pin;
     return true;
   }
+
   public boolean accessAuthorized(int id) {
     int val = this.id;
     return val == id;
   }
-  //getters and setters 
+  // getters and setters
 
-  public ArrayList < String > getPatientNotes() {
+  public ArrayList<String> getPatientNotes() {
     return patientNotes;
   }
 
-  public void setPatientNotes(ArrayList < String > patientNotes) {
+  public void setPatientNotes(ArrayList<String> patientNotes) {
     this.patientNotes = patientNotes;
   }
 
@@ -63,9 +64,9 @@ public class Physician implements HIPAACompliantUser {
     return this.id == confirmedAuthID;
   }
 
-  // 50% done    
+  // 50% done
 }
 
-// I failed the tests 
+// I failed the tests
 
-// I passed the tests ^~^ 
+// I passed the tests ^~^

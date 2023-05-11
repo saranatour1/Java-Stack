@@ -10,42 +10,41 @@ import com.codingdojo.mvc.reposetories.TravelRepository;
 
 @Service
 public class TravelService {
-  
-      private final TravelRepository travelRepository;  
 
-      public TravelService(TravelRepository travelRepository) {
-        this.travelRepository = travelRepository;
-      }
+  private final TravelRepository travelRepository;
 
-  //get all travel items
-      public  List<Travel> allTravels() {
-        return travelRepository.findAll();
-      }
+  public TravelService(TravelRepository travelRepository) {
+    this.travelRepository = travelRepository;
+  }
 
-  //Create a new travel instance
-      public Travel createTravel(Travel b) {
-        return travelRepository.save(b);
-      }
+  // get all travel items
+  public List<Travel> allTravels() {
+    return travelRepository.findAll();
+  }
 
-      public Travel findTravel(Long id) {
-        Optional<Travel> optionalTravel = travelRepository.findById(id);
-        if(optionalTravel.isPresent()) {
-            return optionalTravel.get();
-        } else {
-            return null;
-        }
+  // Create a new travel instance
+  public Travel createTravel(Travel b) {
+    return travelRepository.save(b);
+  }
+
+  public Travel findTravel(Long id) {
+    Optional<Travel> optionalTravel = travelRepository.findById(id);
+    if (optionalTravel.isPresent()) {
+      return optionalTravel.get();
+    } else {
+      return null;
     }
+  }
 
-      public void updateTravel(Travel travel) {
-        travelRepository.save(travel);
-      }
+  public void updateTravel(Travel travel) {
+    travelRepository.save(travel);
+  }
 
-      //delete 
+  // delete
 
-      public void deleteTravel(Long id) {
-        travelRepository.deleteById(id);
-  //    	bookRepository.
-      }
-
+  public void deleteTravel(Long id) {
+    travelRepository.deleteById(id);
+    // bookRepository.
+  }
 
 }

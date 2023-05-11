@@ -14,21 +14,22 @@ import com.codingdojo.mvc.services.BookService;
 @Controller
 public class BookController {
 
-	@Autowired
-	BookService bookService;
-    
+    @Autowired
+    BookService bookService;
+
     @RequestMapping("/books/{id}")
-    public String show(@PathVariable("id") Long id , Model model ) {
+    public String show(@PathVariable("id") Long id, Model model) {
         Book book = bookService.findBook(id);
-        model.addAttribute("book",book);
+        model.addAttribute("book", book);
         return "show.jsp";
     }
-    //returns all books 
+
+    // returns all books
     @RequestMapping("/books")
     public String index(Model model) {
         List<Book> books = bookService.allBooks();
         model.addAttribute("books", books);
         return "index.jsp";
     }
-    
+
 }
