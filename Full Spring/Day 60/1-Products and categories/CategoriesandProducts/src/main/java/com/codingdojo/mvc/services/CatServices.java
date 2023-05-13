@@ -9,6 +9,7 @@ import com.codingdojo.mvc.models.Category;
 import com.codingdojo.mvc.models.Product;
 import com.codingdojo.mvc.repository.categoryRepository;
 import com.codingdojo.mvc.repository.productRepository;
+import com.fasterxml.jackson.databind.ObjectReader;
 
 @Service
 public class CatServices {
@@ -81,6 +82,9 @@ public class CatServices {
     return catrepository.findAllByProducts(product);
   }
 
+  public List<Object[]> allPr(Long id){
+    return catrepository.findCategoriesInProduct(id);
+  }
 
 
 
