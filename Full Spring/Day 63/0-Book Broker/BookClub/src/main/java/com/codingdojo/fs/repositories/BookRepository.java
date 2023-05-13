@@ -12,6 +12,9 @@ public interface BookRepository  extends CrudRepository<Book, Long>  {
   List<Book> findAll();
 
 
+  /*
+   * Native Query to return all the books 
+   */
   
   
 }

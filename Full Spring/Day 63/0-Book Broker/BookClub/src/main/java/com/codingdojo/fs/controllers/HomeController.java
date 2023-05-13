@@ -108,6 +108,8 @@ public class HomeController {
     model.addAttribute("thisUser", thisUser);
 
     // adding all books that the user didn't borrow
+
+    
     List<Book> books = userServ.findallBooks();
     List<Book> borrowedBooks = new ArrayList<>();
     List<Book> notborrowedBooks = new ArrayList<>();
@@ -153,8 +155,6 @@ public class HomeController {
       Long userId = (Long) session.getAttribute("newUser");
       User user = userServ.findUserById(userId);
       book.setUser(user);
-      final DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-      
       userServ.addBook(book);
       return "redirect:/books";
     }
