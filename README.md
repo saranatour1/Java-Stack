@@ -37,33 +37,41 @@ This is the folder Structure for the Java Stack Submissions, This will be update
 │           ├── 0-Calculator I
 │           └── 1-Calculator II
 └── Java Spring
-│    ├── Day 54
-│    │   ├── 0-Daikichi Routes
-│    │   ├── 1-Hello Human
-│    │   └── 2-Daikichi Path Variables
-│    └── Day 55
-│    │    ├── 0-Hopper's Receipt
-│    │    ├── 1-Display Date
-│    │    ├── 2-Fruity Loops
-│    │    ├── 3-Counter
-│    │    └── Day 55-
-│    │        ├── 0-Omikuki Form
-│    │        └── 1-Ninja Gold Game
-│    ├── Day 56
-│    │   └── 0-Omikuki Form
-│    ├── spring MVC
-│    │   ├── Day 58
-│    │   │   └── Summary.md
-│    │   ├── Day 59
-│    │   │   ├── 0- Books API
-│    │   │   ├── 1- Rendering Books
-│    │   │   └── 2- All Books
-│    └── spring adding one to many
-│        └── Day 60
-│            └── 0-Dojos and ninjas
-
-
-
+    ├── Day 54
+    │   ├── 0-Daikichi Routes
+    │   ├── 1-Hello Human
+    │   └── 2-Daikichi Path Variables
+    ├── Day 55
+    │   ├── 0-Hopper's Receipt
+    │   ├── 1-Display Date
+    │   ├── 2-Fruity Loops
+    │   ├── 3-Counter
+    │   └── Day 55-
+    │       ├── 0-Omikuki Form
+    │       └── 1-Ninja Gold Game
+    ├── Day 56
+    │   └── 0-Omikuki Form
+    ├── spring MVC
+    │   ├── Day 58
+    │   │   └── Summary.md
+    │   ├── Day 59
+    │   │   ├── 0-Books API
+    │   │   ├── 1-Rendering Books
+    │   │   └── 2-All Books
+    └── spring adding one to many
+        └── Day 60
+            └── 0-Dojos and ninjas
+└── Full spring
+    ├── Day 60
+    │   └── 0-Categories and Products
+    ├── Day 62
+    │   ├── 0-Login and Registration
+    │   └── 1-Book Club
+    ├── Day 63
+    ├── 0-Book Broker
+    ├── 1-Project Manager
+    └── Day 64
+        └── 0-Queries and Joins
 ```
 
 
