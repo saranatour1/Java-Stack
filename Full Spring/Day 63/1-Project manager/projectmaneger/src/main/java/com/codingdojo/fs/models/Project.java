@@ -2,8 +2,11 @@ package com.codingdojo.fs.models;
 
 // import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -72,17 +77,40 @@ public class Project {
   private User leader;
 
   // joineees
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "joinee_id")
-  private User joinee;
+  // @ManyToOne(fetch = FetchType.LAZY)
+  // @JoinColumn(name = "joinee_id")
+  // private User joinee;
 
-  public User getJoinee() {
-    return joinee;
-  }
 
-  public void setJoinee(User joinee) {
-    this.joinee = joinee;
-  }
+
+
+  // @ManyToMany
+
+      // members of the project
+      @JsonIgnore
+      @ManyToMany(fetch = FetchType.LAZY)
+      @JoinTable(
+          name = "memebers_projects", 
+          joinColumns = @JoinColumn(name = "project_id"), 
+          inverseJoinColumns = @JoinColumn(name = "joinee_id")
+      )
+      private List<User> members;
+
+  // public User getJoinee() {
+  //   return joinee;
+  // }
+
+  // public void setJoinee(User joinee) {
+  //   this.joinee = joinee;
+  // }
+
+  public List<User> getMembers() {
+        return members;
+      }
+
+      public void setMembers(List<User> members) {
+        this.members = members;
+      }
 
   public Project(User leader) {
     this.leader = leader;

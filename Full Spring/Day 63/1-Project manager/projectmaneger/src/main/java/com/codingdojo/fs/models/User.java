@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,6 +15,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 // import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
@@ -95,20 +100,37 @@ public class User {
   private List<Project> projects;
 
   // joinee or peple that join the team
-  @OneToMany(mappedBy = "joinee", fetch = FetchType.LAZY)
-  private List<Project> projectsShared;
+  // @OneToMany(mappedBy = "joinee", fetch = FetchType.LAZY)
+  // private List<Project> projectsShared;
+
+  @JsonIgnore
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "memebers_projects", 
+      joinColumns = @JoinColumn(name = "joinee_id"), 
+      inverseJoinColumns = @JoinColumn(name = "project_id")
+  )
+  private List<Project> ProjectsIamPartOf;
   
 
   // public User(List<Project> projectsShared) {
   //   this.projectsShared = projectsShared;
   // }
 
-  public List<Project> getProjectsShared() {
-    return projectsShared;
+  // public List<Project> getProjectsShared() {
+  //   return projectsShared;
+  // }
+
+  // public void setProjectsShared(List<Project> projectsShared) {
+  //   this.projectsShared = projectsShared;
+  // }
+
+  public List<Project> getProjectsIamPartOf() {
+    return ProjectsIamPartOf;
   }
 
-  public void setProjectsShared(List<Project> projectsShared) {
-    this.projectsShared = projectsShared;
+  public void setProjectsIamPartOf(List<Project> projectsIamPartOf) {
+    ProjectsIamPartOf = projectsIamPartOf;
   }
 
   public User(List<Project> projects) {

@@ -42,29 +42,28 @@
                 </thead>
                 <tbody>
 
-                  <tr>
-                    <c:forEach var="column" items="${test2}">
-                  <tr>
-                    <td class="text-center">
-                      <c:out value="${column[0]}" />
-                    </td>
-                    <td class="text-center">
-                      <a href="/projects/${column[0]}">${column[1]}</a>
-                    </td>
-                    <td class="text-center">
-                      <c:out value="${column[2]}" />
-                    </td>
-                    <td class="text-center">
-                      <c:out value="${column[3]}" />
-                    </td>
-
-                    <td><a href="/projects/${column[0]}/join">Join team</a></td>
-
-
-
-                  </tr>
+            
+                  <c:forEach var="project" items="${notProjects}">
+                    <tr>
+                      <td class="text-center">
+                        <c:out value="${project[0]}" />
+                      </td>
+                      <td class="text-center">
+                        <a href="/projects/${project[0]}">${project[1]}</a>
+                      </td>
+                      <td class="text-center">
+                        <c:out value="${project[2]}" />
+                      </td>
+                      <td class="text-center">
+                        <c:out value="${project[3]}" />
+                      </td>
+                      <td>
+                        <a href="/projects/${project[0]}/join">Join team</a>
+                      </td>
+                    </tr>
                   </c:forEach>
-                  </tr>
+                  
+              
 
 
                   <!-- <c:forEach items="${notallprojects}" var="project">
@@ -121,7 +120,7 @@
           </c:forEach> -->
 
                   <tr>
-                    <c:forEach var="column" items="${test1}">
+                    <c:forEach var="column" items="${fromUser}">
                   <tr>
                     <td class="text-center">
                       <c:out value="${column[0]}" />
@@ -135,27 +134,24 @@
                     <td class="text-center">
                       <c:out value="${column[3]}" />
                     </td>
-
-                    <c:choose>
-                      <c:when test="${newUser == column[4]}">
-                        <td class="d-flex"><a href="/projects/${column[0]}/edit" class="btn btn-link">Edit</a>
-
-                          <form action="/projects/${column[0]}/delete" method="post">
-                            <input type="hidden" name="_method" value="delete">
-
-                            <button type="submit" class="btn btn-link text-danger"> Delete</button>
-                          </form>
-                        </td>
-
-                      </c:when>
-                      <c:otherwise>
-                        <td>
-                          <a href="/projects/${column[0]}/leave">Leave </a>
-                        </td>
+                    <c:if test = "${newUser eq column[4]}">
+                      <td>
+                      <a href="/projects/${column[0]}/edit" class="btn btn-link">Edit</a>
+                      <form action="/projects/${column[0]}/delete" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-link text-danger">Delete</button>
+                      </form>
+                    </td>
+                      </c:if>
+                      <td>
+                        <c:if test = "${newUser != column[4]}">
+                          <a href="/projects/${column[0]}/leave">Leave</a>
+                        </c:if>
+                      </td>
 
 
-                      </c:otherwise>
-                    </c:choose>
+
+                    
 
                   </tr>
                   </c:forEach>

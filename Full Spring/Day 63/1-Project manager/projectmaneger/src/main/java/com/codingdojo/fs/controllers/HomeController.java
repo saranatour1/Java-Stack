@@ -97,35 +97,22 @@ public class HomeController {
     User thisUser = userServ.findUserById(newUserId);
     model.addAttribute("thisUser", thisUser);
 
-    // all the projects regardless
-    // List<Project> projects = projectServ.findAllProjects();
-    // List<Project> allProjectUserIsNotJoinedat = new ArrayList<>();
-    // List<Project> allProjectsUSerISpartOf = new ArrayList<>();
+    // Query to return all the projects the user is part of 
 
-    // for (Project project : projects) {
-    //   if (project.getJoinee() != thisUser) {
-    //     allProjectUserIsNotJoinedat.add(0, project);
-    //   } else {
-    //     allProjectsUSerISpartOf.add(0, project);
-    //   }
+    // List<Object[]> allProjects = projectServ.findAllProjectsContainingUser(newUserId);
 
-    // }
+    List<Object[]> allProjectsUserIsLeader = projectServ.allProjectsCreatedByUser(newUserId);
+    model.addAttribute("fromUser", allProjectsUserIsLeader);
+    // System.out.println(allProjects);
+    // model.addAttribute("allProjects", allProjects);
+    // Query to return all the projects the user is not part of 
 
-    // model.addAttribute("allprojects", allProjectsUSerISpartOf);
-    // model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
+    List<Object[]> notProjects = projectServ.findProjectsNotRelatedToUser(newUserId);
+    model.addAttribute("notProjects", notProjects );
 
-    List<Object[]> test = projectServ.findAllProjectsForUser1(newUserId);
-    List<Object[]> test2 = projectServ.findallNotInUser(newUserId);
-    for (Object[] item : test2) {
-      for (Object value : item) {
-        System.out.print(value + " ");
-      }
-      System.out.println();
-    }
-    model.addAttribute("test1", test);
-    model.addAttribute("test2", test2);
     return "hello.jsp";
   }
+
 
   @GetMapping("/logout")
   public String logout(HttpSession session) {
@@ -137,24 +124,23 @@ public class HomeController {
 
   @RequestMapping("/projects/new")
   public String showAddingProjectsPage(@ModelAttribute("project") Project project, Model model) {
-    // to capture the form input
-    // [2023-09-05]
-    // System.out.println(project.getDueDate());
     model.addAttribute("project", new Project());
     return "addproject.jsp";
   }
 
   @PostMapping("/projects/new")
   public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result,
-      HttpSession session) {
+      HttpSession session , Model model) {
     if (result.hasErrors()) {
+      model.addAttribute("project", new Project());
       return "addproject.jsp";
     } else {
       Long userId = (Long) session.getAttribute("newUser");
       User user = userServ.findUserById(userId);
 
-      project.setLeader(user);
-      project.setJoinee(user);
+      project.setLeader(user); 
+      // no need to add the user to the joinee field
+      // project.setJoinee(user);
       projectServ.addProject(project);
       return "redirect:/dashboard";
     }
@@ -197,9 +183,15 @@ public class HomeController {
 
   // //projects/${project.id}/leave
   @RequestMapping("/projects/{id}/leave")
-  public String leave(@PathVariable("id") Long id) {
+  public String leave(@PathVariable("id") Long id , HttpSession session) {
     Project project = projectServ.findProjectById(id);
-    project.setJoinee(null);
+    Long userId = (Long) session.getAttribute("newUser");
+    User user = userServ.findUserById(userId);
+    // User thisUser = userServ.findUserById(id);
+
+
+    project.getMembers().remove(user);
+    // project.setJoinee(null);
     projectServ.updateProject(project);
     return "redirect:/dashboard";
   }
@@ -210,7 +202,10 @@ public class HomeController {
     Project project = projectServ.findProjectById(id);
     Long userId = (Long) session.getAttribute("newUser");
     User user = userServ.findUserById(userId);
-    project.setJoinee(user);
+
+    project.getMembers().add(user);
+  
+    // project.setJoinee(user);
 
     projectServ.updateProject(project);
     System.out.println("Successs!");

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.fs.models.Project;
+import com.codingdojo.fs.models.User;
 import com.codingdojo.fs.repositories.ProjectRepository;
 
 @Service
@@ -35,11 +36,24 @@ public class ProjectService {
     return projectRepo.findAll();
   }
 
-  public List<Object[]> findAllProjectsForUser1(Long id) {
+  public List<Object[]> findAllProjectsContainingUser(Long id){
+
     return projectRepo.findAllProjectsForUser(id);
   }
 
-  public List<Object[]> findallNotInUser(Long id){
-    return projectRepo.findAllProjectsNotinUser(id);
+  public List<Object []> allProjectsCreatedByUser(Long id){
+  return projectRepo.allProjectsUserIsLeader(id);
   }
+
+  public List<Object[]> findProjectsNotRelatedToUser(Long id){
+		return projectRepo.findProjectsNotJoinedByUser(id);
+	}
+
+  // public List<Object[]> findAllProjectsForUser1(Long id) {
+  //   return projectRepo.findAllProjectsForUser(id);
+  // }
+
+  // public List<Object[]> findallNotInUser(Long id){
+  //   return projectRepo.findAllProjectsNotinUser(id);
+  // }
 }
