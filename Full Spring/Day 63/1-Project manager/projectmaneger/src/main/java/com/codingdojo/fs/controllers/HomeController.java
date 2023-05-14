@@ -98,21 +98,21 @@ public class HomeController {
     model.addAttribute("thisUser", thisUser);
 
     // all the projects regardless
-    List<Project> projects = projectServ.findAllProjects();
-    List<Project> allProjectUserIsNotJoinedat = new ArrayList<>();
-    List<Project> allProjectsUSerISpartOf = new ArrayList<>();
+    // List<Project> projects = projectServ.findAllProjects();
+    // List<Project> allProjectUserIsNotJoinedat = new ArrayList<>();
+    // List<Project> allProjectsUSerISpartOf = new ArrayList<>();
 
-    for (Project project : projects) {
-      if (project.getJoinee() != thisUser) {
-        allProjectUserIsNotJoinedat.add(0, project);
-      } else {
-        allProjectsUSerISpartOf.add(0, project);
-      }
+    // for (Project project : projects) {
+    //   if (project.getJoinee() != thisUser) {
+    //     allProjectUserIsNotJoinedat.add(0, project);
+    //   } else {
+    //     allProjectsUSerISpartOf.add(0, project);
+    //   }
 
-    }
+    // }
 
-    model.addAttribute("allprojects", allProjectsUSerISpartOf);
-    model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
+    // model.addAttribute("allprojects", allProjectsUSerISpartOf);
+    // model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
 
     List<Object[]> test = projectServ.findAllProjectsForUser1(newUserId);
     List<Object[]> test2 = projectServ.findallNotInUser(newUserId);
