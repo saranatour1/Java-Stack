@@ -97,22 +97,22 @@ public class HomeController {
     User thisUser = userServ.findUserById(newUserId);
     model.addAttribute("thisUser", thisUser);
 
-    // Query to return all the projects the user is part of 
+    // Query to return all the projects the user is part of
 
-    // List<Object[]> allProjects = projectServ.findAllProjectsContainingUser(newUserId);
+    // List<Object[]> allProjects =
+    // projectServ.findAllProjectsContainingUser(newUserId);
 
     List<Object[]> allProjectsUserIsLeader = projectServ.allProjectsCreatedByUser(newUserId);
     model.addAttribute("fromUser", allProjectsUserIsLeader);
     // System.out.println(allProjects);
     // model.addAttribute("allProjects", allProjects);
-    // Query to return all the projects the user is not part of 
+    // Query to return all the projects the user is not part of
 
     List<Object[]> notProjects = projectServ.findProjectsNotRelatedToUser(newUserId);
-    model.addAttribute("notProjects", notProjects );
+    model.addAttribute("notProjects", notProjects);
 
     return "hello.jsp";
   }
-
 
   @GetMapping("/logout")
   public String logout(HttpSession session) {
@@ -130,7 +130,7 @@ public class HomeController {
 
   @PostMapping("/projects/new")
   public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result,
-      HttpSession session , Model model) {
+      HttpSession session, Model model) {
     if (result.hasErrors()) {
       model.addAttribute("project", new Project());
       return "addproject.jsp";
@@ -138,7 +138,7 @@ public class HomeController {
       Long userId = (Long) session.getAttribute("newUser");
       User user = userServ.findUserById(userId);
 
-      project.setLeader(user); 
+      project.setLeader(user);
       // no need to add the user to the joinee field
       // project.setJoinee(user);
       projectServ.addProject(project);
@@ -183,12 +183,11 @@ public class HomeController {
 
   // //projects/${project.id}/leave
   @RequestMapping("/projects/{id}/leave")
-  public String leave(@PathVariable("id") Long id , HttpSession session) {
+  public String leave(@PathVariable("id") Long id, HttpSession session) {
     Project project = projectServ.findProjectById(id);
     Long userId = (Long) session.getAttribute("newUser");
     User user = userServ.findUserById(userId);
     // User thisUser = userServ.findUserById(id);
-
 
     project.getMembers().remove(user);
     // project.setJoinee(null);
@@ -204,7 +203,7 @@ public class HomeController {
     User user = userServ.findUserById(userId);
 
     project.getMembers().add(user);
-  
+
     // project.setJoinee(user);
 
     projectServ.updateProject(project);

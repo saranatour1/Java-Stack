@@ -92,10 +92,6 @@ public class UserService {
     return userRepo.findById(id).get();
   }
 
-
-  // i decided to put the project services alone 
-  
-
-
+  // i decided to put the project services alone
 
 }

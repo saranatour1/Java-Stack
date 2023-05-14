@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
 
-            
+
                   <c:forEach var="project" items="${notProjects}">
                     <tr>
                       <td class="text-center">
@@ -62,8 +62,8 @@
                       </td>
                     </tr>
                   </c:forEach>
-                  
-              
+
+
 
 
                   <!-- <c:forEach items="${notallprojects}" var="project">
@@ -134,24 +134,24 @@
                     <td class="text-center">
                       <c:out value="${column[3]}" />
                     </td>
-                    <c:if test = "${newUser eq column[4]}">
-                      <td>
-                      <a href="/projects/${column[0]}/edit" class="btn btn-link">Edit</a>
-                      <form action="/projects/${column[0]}/delete" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="btn btn-link text-danger">Delete</button>
-                      </form>
-                    </td>
-                      </c:if>
-                      <td>
-                        <c:if test = "${newUser != column[4]}">
-                          <a href="/projects/${column[0]}/leave">Leave</a>
-                        </c:if>
+                    <c:if test="${newUser eq column[4]}">
+                      <td class="d-flex">
+                        <a href="/projects/${column[0]}/edit" class="btn btn-link">Edit</a>
+                        <form action="/projects/${column[0]}/delete" method="post">
+                          <input type="hidden" name="_method" value="delete">
+                          <button type="submit" class="btn btn-link text-danger">Delete</button>
+                        </form>
                       </td>
+                    </c:if>
+                    <td>
+                      <c:if test="${newUser != column[4]}">
+                        <a href="/projects/${column[0]}/leave">Leave</a>
+                      </c:if>
+                    </td>
 
 
 
-                    
+
 
                   </tr>
                   </c:forEach>
