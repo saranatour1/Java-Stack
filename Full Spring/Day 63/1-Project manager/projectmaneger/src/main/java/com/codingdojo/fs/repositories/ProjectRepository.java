@@ -31,7 +31,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
    * *
    */
 
-  @Query(value = "SELECT  projects.id, projects.title, users.first_name , projects.due_date , projects.leader_id FROM projects "
+  @Query(value = "SELECT  projects.id, projects.title, users.first_name , Date(projects.due_date) as due_date , projects.leader_id FROM projects "
       +
       "INNER JOIN users ON projects.leader_id = users.id  " +
       "WHERE projects.joinee_id = :id ", nativeQuery = true)
@@ -53,7 +53,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
    * );
    */
 
-   @Query(value = "SELECT projects.id, projects.title ,users.first_name, projects.due_date FROM projects "+
+   @Query(value = "SELECT projects.id, projects.title ,users.first_name, Date(projects.due_date) as due_date FROM projects "+
    "join users on leader_id = users.id  "+
    "WHERE projects.id NOT IN ( "+
    "SELECT projects.id " +
