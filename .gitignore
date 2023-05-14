@@ -1,2 +1,6 @@
 *.class
 *.vscode
+
+**/.metadata/
+
+

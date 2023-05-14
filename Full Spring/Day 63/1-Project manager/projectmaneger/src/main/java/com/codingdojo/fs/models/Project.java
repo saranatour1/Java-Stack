@@ -82,10 +82,6 @@ public class Project {
   
 
 
-
-
-
-
   public User getJoinee() {
     return joinee;
   }
