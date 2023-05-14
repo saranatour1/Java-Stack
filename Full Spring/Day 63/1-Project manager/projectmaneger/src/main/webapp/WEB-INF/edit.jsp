@@ -48,6 +48,7 @@ pageEncoding="UTF-8" %>
       </p>
 
       <input type="submit" value="Submit" class="btn btn-primary" />
+      
       <input type="reset" value="Cancel " class="btn btn-primary" />
     </form:form>
 

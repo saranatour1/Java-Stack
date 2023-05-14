@@ -115,13 +115,15 @@ public class HomeController {
     model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
 
     List<Object[]> test = projectServ.findAllProjectsForUser1(newUserId);
-    for (Object[] item : test) {
+    List<Object[]> test2 = projectServ.findallNotInUser(newUserId);
+    for (Object[] item : test2) {
       for (Object value : item) {
         System.out.print(value + " ");
       }
       System.out.println();
     }
     model.addAttribute("test1", test);
+    model.addAttribute("test2", test2);
     return "hello.jsp";
   }
 

@@ -39,4 +39,7 @@ public class ProjectService {
     return projectRepo.findAllProjectsForUser(id);
   }
 
+  public List<Object[]> findallNotInUser(Long id){
+    return projectRepo.findAllProjectsNotinUser(id);
+  }
 }

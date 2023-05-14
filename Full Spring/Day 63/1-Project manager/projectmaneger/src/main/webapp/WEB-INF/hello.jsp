@@ -41,7 +41,33 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach items="${notallprojects}" var="project">
+
+                  <tr>
+                    <c:forEach var="column" items="${test2}">
+                  <tr>
+                    <td class="text-center">
+                      <c:out value="${column[0]}" />
+                    </td>
+                    <td class="text-center">
+                      <a href="/projects/${column[0]}">${column[1]}</a>
+                    </td>
+                    <td class="text-center">
+                      <c:out value="${column[2]}" />
+                    </td>
+                    <td class="text-center">
+                      <c:out value="${column[3]}" />
+                    </td>
+
+                    <td><a href="/projects/${column[0]}/join">Join team</a></td>
+
+
+
+                  </tr>
+                  </c:forEach>
+                  </tr>
+
+
+                  <!-- <c:forEach items="${notallprojects}" var="project">
                     <tr>
                       <th scope="row">${projct.id}</th>
                       <td><a href="/projects/${project.id}">${project.title}</a> </td>
@@ -49,7 +75,7 @@
                       <td>${project.dueDate}</td>
                       <td><a href="/projects/${project.id}/join">Join team</a></td>
                     </tr>
-                  </c:forEach>
+                  </c:forEach> -->
 
                 </tbody>
               </table>

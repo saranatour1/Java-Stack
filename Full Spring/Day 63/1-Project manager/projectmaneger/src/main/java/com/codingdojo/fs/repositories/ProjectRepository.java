@@ -53,4 +53,12 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
    * );
    */
 
+   @Query(value = "SELECT projects.id, projects.title ,users.first_name, projects.due_date FROM projects "+
+   "join users on leader_id = users.id  "+
+   "WHERE projects.id NOT IN ( "+
+   "SELECT projects.id " +
+   "FROM projects "+
+   "WHERE joinee_id = :id) ", nativeQuery = true)
+List<Object[]> findAllProjectsNotinUser(@Param("id") Long id);
+
 }
