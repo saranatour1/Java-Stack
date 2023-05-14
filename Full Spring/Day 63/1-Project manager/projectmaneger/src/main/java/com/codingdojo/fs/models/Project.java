@@ -18,13 +18,13 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+// import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "projects")
 public class Project {
-  
+
   public Project() {
   }
 
@@ -33,31 +33,26 @@ public class Project {
   private Long id;
 
   @NotEmpty(message = "title connot be empty! ")
-  @Size(min = 3,  message = "Title must be atleast 3 charecters! ")
+  @Size(min = 3, message = "Title must be atleast 3 charecters! ")
   private String title;
 
   @NotEmpty(message = "descreption connot be empty! ")
-  @Size(min = 3,  message = "descreption  must be atleast 3 charecters! ")
+  @Size(min = 3, message = "descreption  must be atleast 3 charecters! ")
   private String descreption;
 
-
   // @NotEmpty(message = "date connot be empty! ")
-  //must check this 
-  //supported :D;D 
+  // must check this
+  // supported :D;D
   // @NotNull(message = "date cannot be empty!")
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Future(message = "date must be in the future!")
   private Date dueDate;
-
 
   @Column(updatable = false)
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date createdAt;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date updatedAt;
-
-
-
 
   public Project(
       @NotEmpty(message = "title connot be empty! ") @Size(min = 3, message = "Title must be atleast 3 charecters! ") String title,
@@ -68,19 +63,18 @@ public class Project {
     this.dueDate = dueDate;
   }
 
-  // ze relation // user can have many projects , // one user can be assosiated with one 1 project 
+  // ze relation // user can have many projects , // one user can be assosiated
+  // with one 1 project
 
-  //leader_id
+  // leader_id
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name="leader_id")
+  @JoinColumn(name = "leader_id")
   private User leader;
 
-  //joineees
+  // joineees
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "joinee_id")
   private User joinee;
-  
-
 
   public User getJoinee() {
     return joinee;
@@ -160,17 +154,9 @@ public class Project {
     this.updatedAt = updatedAt;
   }
 
+  // private LocalDate dateOfBirth;
 
-
-  
-
-
-
-
-
-//   private LocalDate dateOfBirth;
-
-// public Optional<@Past LocalDate> getDateOfBirth() {
-//     return Optional.of(dateOfBirth);
-// }
+  // public Optional<@Past LocalDate> getDateOfBirth() {
+  // return Optional.of(dateOfBirth);
+  // }
 }

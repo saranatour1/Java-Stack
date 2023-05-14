@@ -31,8 +31,12 @@ public class ProjectService {
     projectRepo.deleteById(id);
   }
 
-  public List<Project> findAllProjects(){
+  public List<Project> findAllProjects() {
     return projectRepo.findAll();
+  }
+
+  public List<Object[]> findAllProjectsForUser1(Long id) {
+    return projectRepo.findAllProjectsForUser(id);
   }
 
 }

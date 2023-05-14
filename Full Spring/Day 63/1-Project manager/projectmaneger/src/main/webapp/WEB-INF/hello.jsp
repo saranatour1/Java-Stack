@@ -1,77 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
-<!-- c:out ; c:forEach etc. -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- Formatting (dates) -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!-- form:form -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- for rendering errors on PUT routes -->
-<%@ page isErrorPage="true" %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Confirmation page, all books</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-  </head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!-- c:out ; c:forEach etc. -->
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <!-- Formatting (dates) -->
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+      <!-- form:form -->
+      <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+        <!-- for rendering errors on PUT routes -->
+        <%@ page isErrorPage="true" %>
+          <!DOCTYPE html>
+          <html>
 
-  <body>
-    <div class="container mt-5">
-      <div class="d-flex justify-content-between">
-        <hgroup>
-          <h1>Welcome, ${thisUser.firstName} !</h1>
-          <a href="/projects/new" class="btn btn-link"> Add a project</a>
-        </hgroup>
+          <head>
+            <meta charset="UTF-8" />
+            <title>Confirmation page, all books</title>
+            <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+          </head>
 
-        <div>
-           <a href="/logout" class="btn btn-link"> Logout</a> <br>
+          <body>
+            <div class="container mt-5">
+              <div class="d-flex justify-content-between">
+                <hgroup>
+                  <h1>Welcome, ${thisUser.firstName} !</h1>
+                  <a href="/projects/new" class="btn btn-link"> Add a project</a>
+                </hgroup>
 
-        </div>
-      </div>
-      <h3>All the projects </h3>
-      <table class="table w-75 mx-auto">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Project</th>
-            <th scope="col">team lead </th>
-            <th scope="col"> due date</th>
-            <th scope="col"> actions  </th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach items="${notallprojects}" var="project">
-            <tr>
-              <th scope="row">${projct.id}</th>
-              <td><a href="/projects/${project.id}">${project.title}</a> </td>
-              <td>${project.leader.firstName}</td>
-              <td>${project.dueDate}</td>
-              <td><a href="/projects/${project.id}/join">Join team</a></td>
-            </tr>
-          </c:forEach>
+                <div>
+                  <a href="/logout" class="btn btn-link"> Logout</a> <br>
 
-        </tbody>
-      </table>
-      <h3>Your Projects </h3>
-      <table class="table w-75 mx-auto">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Project</th>
-            <th scope="col">team lead </th>
-            <th scope="col"> due date</th>
-            <th scope="col"> actions  </th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach items="${allprojects}" var="project">
+                </div>
+              </div>
+              <h3>All the projects </h3>
+              <table class="table w-75 mx-auto">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">team lead </th>
+                    <th scope="col"> due date</th>
+                    <th scope="col"> actions </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach items="${notallprojects}" var="project">
+                    <tr>
+                      <th scope="row">${projct.id}</th>
+                      <td><a href="/projects/${project.id}">${project.title}</a> </td>
+                      <td>${project.leader.firstName}</td>
+                      <td>${project.dueDate}</td>
+                      <td><a href="/projects/${project.id}/join">Join team</a></td>
+                    </tr>
+                  </c:forEach>
+
+                </tbody>
+              </table>
+              <h3>Your Projects </h3>
+              <table class="table w-75 mx-auto">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">team lead </th>
+                    <th scope="col"> due date</th>
+                    <th scope="col"> actions </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <c:forEach items="${allprojects}" var="project">
             <tr>
               <th scope="row">${project.id}</th>
               <td><a href="/projects/${project.id}">${project.title}</a> </td>
               <td>${project.leader.firstName}</td>
               <td>${project.dueDate}</td>
-              <!-- start of the if statemnent -->
               <c:choose>
                 <c:when test="${newUser == project.leader.id}">
                   <td class="d-flex"><a href="/projects/${project.id}/edit" class="btn btn-link">Edit</a>
@@ -93,16 +92,58 @@ pageEncoding="UTF-8" %>
                 </c:otherwise>
               </c:choose>
             </tr>
-          </c:forEach>
+          </c:forEach> -->
 
-        </tbody>
-      </table>
+                  <tr>
+                    <c:forEach var="column" items="${test1}">
+                  <tr>
+                    <td class="text-center">
+                      <c:out value="${column[0]}" />
+                    </td>
+                    <td class="text-center">
+                      <a href="/projects/${column[0]}">${column[1]}</a>
+                    </td>
+                    <td class="text-center">
+                      <c:out value="${column[2]}" />
+                    </td>
+                    <td class="text-center">
+                      <c:out value="${column[3]}" />
+                    </td>
 
-      
+                    <c:choose>
+                      <c:when test="${newUser == column[4]}">
+                        <td class="d-flex"><a href="/projects/${column[0]}/edit" class="btn btn-link">Edit</a>
+
+                          <form action="/projects/${column[0]}/delete" method="post">
+                            <input type="hidden" name="_method" value="delete">
+
+                            <button type="submit" class="btn btn-link text-danger"> Delete</button>
+                          </form>
+                        </td>
+
+                      </c:when>
+                      <c:otherwise>
+                        <td>
+                          <a href="/projects/${column[0]}/leave">Leave </a>
+                        </td>
 
 
-    </div>
+                      </c:otherwise>
+                    </c:choose>
 
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-  </body>
-</html>
+                  </tr>
+                  </c:forEach>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+
+            </div>
+
+            <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+          </body>
+
+          </html>

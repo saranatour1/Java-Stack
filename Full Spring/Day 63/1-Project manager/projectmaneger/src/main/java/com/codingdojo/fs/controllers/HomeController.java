@@ -1,12 +1,12 @@
 package com.codingdojo.fs.controllers;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+// import java.text.ParseException;
+// import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.Date;
 import java.util.List;
 
+import org.eclipse.tags.shaded.org.apache.xml.utils.ObjectStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.fs.models.LoginUser;
 import com.codingdojo.fs.models.Project;
@@ -90,44 +90,40 @@ public class HomeController {
     return "redirect:/dashboard";
   }
 
-  //main page 
+  // main page
   @GetMapping("/dashboard")
   public String homePage(Model model, HttpSession session) {
     Long newUserId = (Long) session.getAttribute("newUser");
     User thisUser = userServ.findUserById(newUserId);
     model.addAttribute("thisUser", thisUser);
 
-    // all the projects regardless 
+    // all the projects regardless
     List<Project> projects = projectServ.findAllProjects();
     List<Project> allProjectUserIsNotJoinedat = new ArrayList<>();
     List<Project> allProjectsUSerISpartOf = new ArrayList<>();
 
     for (Project project : projects) {
-      if(project.getJoinee() != thisUser){
+      if (project.getJoinee() != thisUser) {
         allProjectUserIsNotJoinedat.add(0, project);
-      }else{
+      } else {
         allProjectsUSerISpartOf.add(0, project);
       }
 
-
-
-  
-
-      // if (book.getUser_that_borrowed() == thisUser) {
-      //   borrowedBooks.add(0, book);
-      // } else if (book.getUser_that_borrowed() == null || book.getUser() == thisUser) {
-      //   notborrowedBooks.add(0, book);
-      // }
     }
-
 
     model.addAttribute("allprojects", allProjectsUSerISpartOf);
     model.addAttribute("notallprojects", allProjectUserIsNotJoinedat);
 
-
+    List<Object[]> test = projectServ.findAllProjectsForUser1(newUserId);
+    for (Object[] item : test) {
+      for (Object value : item) {
+        System.out.print(value + " ");
+      }
+      System.out.println();
+    }
+    model.addAttribute("test1", test);
     return "hello.jsp";
   }
-
 
   @GetMapping("/logout")
   public String logout(HttpSession session) {
@@ -140,20 +136,21 @@ public class HomeController {
   @RequestMapping("/projects/new")
   public String showAddingProjectsPage(@ModelAttribute("project") Project project, Model model) {
     // to capture the form input
-  // [2023-09-05]
+    // [2023-09-05]
     // System.out.println(project.getDueDate());
     model.addAttribute("project", new Project());
     return "addproject.jsp";
   }
 
   @PostMapping("/projects/new")
-  public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result, HttpSession session) {
+  public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result,
+      HttpSession session) {
     if (result.hasErrors()) {
       return "addproject.jsp";
     } else {
       Long userId = (Long) session.getAttribute("newUser");
       User user = userServ.findUserById(userId);
-        
+
       project.setLeader(user);
       project.setJoinee(user);
       projectServ.addProject(project);
@@ -161,12 +158,11 @@ public class HomeController {
     }
   }
 
-
-  // editing a project 
+  // editing a project
 
   @RequestMapping("/projects/{id}/edit")
   public String edit(@PathVariable("id") Long id, Model model) {
-    
+
     // Burger burger = burgerService.findBurger(id);
     Project project = projectServ.findProjectById(id);
     model.addAttribute("project", project);
@@ -197,7 +193,6 @@ public class HomeController {
     return "redirect:/dashboard";
   }
 
-
   // //projects/${project.id}/leave
   @RequestMapping("/projects/{id}/leave")
   public String leave(@PathVariable("id") Long id) {
@@ -207,7 +202,7 @@ public class HomeController {
     return "redirect:/dashboard";
   }
 
-  ///projects/${project.id}/join
+  /// projects/${project.id}/join
   @RequestMapping(value = "/projects/{id}/join")
   public String borrow(@PathVariable("id") Long id, HttpSession session) {
     Project project = projectServ.findProjectById(id);
@@ -219,7 +214,6 @@ public class HomeController {
     System.out.println("Successs!");
     return "redirect:/dashboard";
   }
-
 
   // /projects/${project.id}
 
