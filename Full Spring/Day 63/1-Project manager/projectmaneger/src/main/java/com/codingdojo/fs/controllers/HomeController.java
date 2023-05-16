@@ -149,7 +149,7 @@ public class HomeController {
   // editing a project
 
   @RequestMapping("/projects/{id}/edit")
-  public String edit(@PathVariable("id") Long id, Model model) {
+  public String edit( @PathVariable("id") Long id, Model model) {
 
     // Burger burger = burgerService.findBurger(id);
     Project project = projectServ.findProjectById(id);
