@@ -33,6 +33,7 @@ public class DateController {
 	@RequestMapping("/time")
 	public String pickTime(Model model) {
 		Date today = new Date();
+		
 		SimpleDateFormat TimeFor = new SimpleDateFormat("h:m:s a");
 		String stringTime = TimeFor.format(today); // Thu, Apr 27, '23
 
