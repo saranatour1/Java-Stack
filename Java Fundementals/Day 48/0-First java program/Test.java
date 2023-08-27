@@ -4,9 +4,10 @@
 
 public class Test {
 	public static void main(String[] args) {
-        String name ="Sara";
-        int age =23;
-        String homeTown="Tulkarem";
-        System.out.println("My name is: " + name +'\n' + "I am " + age +'\n'+ "My hommetown is " +homeTown);
+		String name ="Sara";
+		int age =23;
+		String homeTown="Tulkarem";
+		String formattedString = String.format("My name is: %s, I am %d years old. My hometown is %s", name, age, homeTown);
+    System.out.println(formattedString);
 	}
 }
